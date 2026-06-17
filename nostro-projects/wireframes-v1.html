@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#539 NOSTRO PROJECTS — Wireframes v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zwart:   #111111;
+    --messing: #B8762A;
+    --greige:  #E7E3DA;
+    --taupe:   #A89B87;
+    --wit:     #FFFFFF;
+    --f-head:  'Fraunces', Georgia, serif;
+    --f-body:  'DM Sans', Helvetica, Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--f-body);
+    background: #F0F0F0;
+    color: #111;
+  }
+
+  /* ── SWITCHER ─────────────────────────────────────── */
+  .switcher {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: #111;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+    height: 52px;
+  }
+  .switcher .label {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-right: 20px;
+  }
+  .switcher button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 13px;
+    font-family: inherit;
+    padding: 16px 20px;
+    cursor: pointer;
+    letter-spacing: .04em;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .switcher button.active {
+    color: #fff;
+    border-bottom-color: #fff;
+  }
+  .switcher .note {
+    margin-left: auto;
+    color: #555;
+    font-size: 11px;
+    letter-spacing: .06em;
+  }
+
+  /* ── WIREFRAME CONTAINER ─────────────────────────── */
+  .wireframe {
+    display: none;
+    padding-top: 52px;
+  }
+  .wireframe.visible { display: block; }
+
+  /* ── WIREFRAME SHARED ELEMENTS ───────────────────── */
+  .img-placeholder {
+    background: #D8E8F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #8AAEC0;
+  }
+  .img-placeholder.grey {
+    background: #E2E2E2;
+    color: #AAAAAA;
+  }
+  .img-placeholder svg {
+    width: 36px;
+    height: 36px;
+    opacity: .7;
+  }
+  .img-placeholder span {
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #999;
+    border: 1px solid #DDD;
+    padding: 3px 8px;
+    margin-bottom: 16px;
+  }
+
+  .text-bar {
+    height: 12px;
+    background: #DDD;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+  .text-bar.short { width: 45%; }
+  .text-bar.med { width: 70%; }
+  .text-bar.long { width: 90%; }
+  .text-bar.full { width: 100%; }
+  .text-bar.dark { background: #BBB; }
+
+  /* Annotation pin */
+  .pin {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #FFE566;
+    color: #111;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  /* ════════════════════════════════════════════════════
+     WIREFRAME A — Gebaseerd op wemake structuur
+  ════════════════════════════════════════════════════ */
+
+  /* NAV */
+  .a-nav {
+    background: #fff;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .a-nav .logo-block {
+    font-family: var(--f-body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #111;
+  }
+  .a-nav .nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .a-nav .nav-links span {
+    font-size: 13px;
+    color: #555;
+    cursor: pointer;
+  }
+  .a-nav .nav-cta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: #111;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  /* HERO */
+  .a-hero {
+    position: relative;
+    height: 680px;
+    overflow: hidden;
+  }
+  .a-hero .img-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .a-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.28);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    padding: 40px;
+  }
+  .a-hero .hero-title {
+    font-family: var(--f-head);
+    font-size: 64px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    max-width: 700px;
+  }
+  .a-hero .hero-sub {
+    font-family: var(--f-body);
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,.75);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .a-hero .hero-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .btn-primary {
+    font-family: var(--f-body);
+    background: var(--messing);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-outline {
+    font-family: var(--f-body);
+    background: transparent;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,.6);
+    cursor: pointer;
+  }
+  .a-hero .pin { top: 20px; left: 20px; }
+
+  /* LATEST WORK */
+  .a-latest {
+    background: #fff;
+    padding: 72px 40px 0;
+  }
+  .a-latest .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+  }
+  .a-latest .section-title {
+    font-family: var(--f-head);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: #111;
+  }
+  .a-latest .see-all {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #111;
+    padding-bottom: 2px;
+  }
+
+  /* Project card 1: tekst links + groot beeld rechts */
+  .a-project-1 {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 0;
+    border-top: 1px solid #E8E8E8;
+    padding: 48px 0;
+  }
+  .a-project-1 .info {
+    padding-right: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  .a-project-1 .proj-nr {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .a-project-1 .proj-title {
+    font-family: var(--f-head);
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: #111;
+    line-height: 1.1;
+  }
+  .a-project-1 .proj-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: 1px solid #DDD;
+    padding: 4px 10px;
+    color: #777;
+  }
+  .a-project-1 .proj-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .a-project-1 .img-placeholder {
+    height: 400px;
+  }
+
+  /* Project card 2: grote afbeelding + label erop */
+  .a-project-2 {
+    position: relative;
+    height: 520px;
+    margin-bottom: 0;
+  }
+  .a-project-2 .img-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+  .a-project-2 .proj-overlay {
+    position: absolute;
+    bottom: 28px;
+    left: 28px;
+    background: #fff;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .a-project-2 .proj-overlay .proj-nr { font-size: 10px; color: #999; letter-spacing: .12em; text-transform: uppercase; }
+  .a-project-2 .proj-overlay .proj-title { font-family: var(--f-head); font-size: 20px; font-weight: 400; }
+
+  /* CTA STRIP */
+  .a-cta-strip {
+    background: #F7F7F5;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    border-top: 1px solid #E8E8E8;
+  }
+  .a-cta-strip .cta-title {
+    font-family: var(--f-head);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    max-width: 600px;
+    color: #111;
+  }
+
+  /* CLIENTS */
+  .a-clients {
+    background: #fff;
+    padding: 80px 40px;
+    border-top: 1px solid #E8E8E8;
+  }
+  .a-clients-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .a-clients .claim {
+    font-family: var(--f-head);
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.15;
+    color: #111;
+  }
+  .logo-row {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-box {
+    width: 100px;
+    height: 40px;
+    background: #EBEBEB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-box span {
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #AAA;
+    font-weight: 700;
+  }
+
+  /* FOOTER CTA */
+  .a-footer-cta {
+    background: #111;
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .a-footer-cta .fcta-title {
+    font-family: var(--f-head);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: #fff;
+    max-width: 600px;
+    line-height: 1.05;
+  }
+
+  /* FOOTER */
+  .a-footer {
+    background: #111;
+    border-top: 1px solid #2A2A2A;
+    padding: 40px 40px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-col .col-title {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .footer-col .col-link {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  .a-footer-bottom {
+    background: #111;
+    border-top: 1px solid #2A2A2A;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .a-footer-bottom span {
+    font-size: 11px;
+    color: #555;
+  }
+
+
+  /* ════════════════════════════════════════════════════
+     WIREFRAME B — Andere aanpak voor Nostro Projects
+  ════════════════════════════════════════════════════ */
+
+  /* NAV B */
+  .b-nav {
+    background: #fff;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .b-nav .logo-block {
+    font-family: var(--f-body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .b-nav .nav-right {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .b-nav .nav-right span { font-size: 13px; color: #555; }
+  .b-nav .nav-cta {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    background: #111;
+    color: #fff;
+    padding: 10px 20px;
+  }
+
+  /* HERO B — split: grote tekst links, gestapeld beeld rechts */
+  .b-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 640px;
+    background: #fff;
+  }
+  .b-hero .text-side {
+    padding: 80px 60px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    border-right: 1px solid #E8E8E8;
+  }
+  .b-hero .eyebrow {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .b-hero .hero-title {
+    font-family: var(--f-head);
+    font-size: 72px;
+    font-weight: 400;
+    letter-spacing: -.02em;
+    line-height: 1.0;
+    color: #111;
+  }
+  .b-hero .hero-sub {
+    font-family: var(--f-body);
+    font-size: 16px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.65;
+    max-width: 420px;
+  }
+  .b-hero .hero-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .btn-dark {
+    font-family: var(--f-body);
+    background: var(--messing);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-line {
+    font-family: var(--f-body);
+    background: transparent;
+    color: #111;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid #111;
+    cursor: pointer;
+  }
+  .b-hero .img-side {
+    display: grid;
+    grid-template-rows: 1.4fr 1fr;
+    gap: 0;
+  }
+  .b-hero .img-side .img-placeholder {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .b-hero .img-side .img-placeholder:last-child { border-bottom: none; }
+
+  /* NUMBERS */
+  .b-numbers {
+    background: #F7F7F5;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .b-stat {
+    padding: 48px 40px;
+    border-right: 1px solid #E8E8E8;
+  }
+  .b-stat:last-child { border-right: none; }
+  .b-stat .stat-nr {
+    font-family: var(--f-head);
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: -.02em;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .b-stat .stat-label {
+    font-size: 13px;
+    color: #777;
+  }
+
+  /* PROJECTS GRID */
+  .b-projects {
+    background: #fff;
+    padding: 72px 40px;
+  }
+  .b-projects .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+  }
+  .b-projects .section-title {
+    font-family: var(--f-head);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+  }
+  .b-projects .see-all {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid #111;
+    padding-bottom: 2px;
+    color: #111;
+    text-decoration: none;
+  }
+  .b-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: #E8E8E8;
+  }
+  .b-grid-item {
+    background: #fff;
+    position: relative;
+  }
+  .b-grid-item .img-placeholder {
+    width: 100%;
+    height: 340px;
+  }
+  .b-grid-item.wide {
+    grid-column: span 2;
+  }
+  .b-grid-item.wide .img-placeholder {
+    height: 440px;
+  }
+  .b-grid-item .item-info {
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid #E8E8E8;
+  }
+  .b-grid-item .item-title {
+    font-family: var(--f-head);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .b-grid-item .item-type {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  /* APPROACH */
+  .b-approach {
+    background: #111;
+    padding: 80px 40px;
+    color: #fff;
+  }
+  .b-approach .section-title {
+    font-family: var(--f-head);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: #fff;
+    margin-bottom: 48px;
+    max-width: 480px;
+  }
+  .b-approach-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-top: 1px solid #2A2A2A;
+    padding-top: 40px;
+  }
+  .b-approach-col .col-nr {
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 16px;
+  }
+  .b-approach-col .col-title {
+    font-family: var(--f-head);
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .b-approach-col .text-bar { background: #2A2A2A; }
+  .b-approach-col .text-bar.dark { background: #333; }
+
+  /* CLIENTS B */
+  .b-clients {
+    background: #fff;
+    padding: 72px 40px;
+    border-top: 1px solid #E8E8E8;
+  }
+  .b-clients .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+  }
+  .b-clients .section-title {
+    font-family: var(--f-head);
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+  }
+  /* Logo slider track */
+  .logo-slider {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+    padding: 28px 0;
+  }
+  .logo-slider-track {
+    display: flex;
+    gap: 0;
+    align-items: center;
+  }
+  .logo-item {
+    flex: 0 0 160px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #E8E8E8;
+    padding: 0 24px;
+  }
+  .logo-item span {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #AAA;
+    font-weight: 700;
+  }
+  .slider-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #DDD;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* FOOTER CTA B */
+  .b-footer-cta {
+    background: #F7F7F5;
+    border-top: 1px solid #E8E8E8;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .b-footer-cta .cta-title {
+    font-family: var(--f-head);
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: #111;
+    line-height: 1.05;
+  }
+  .b-footer-cta .cta-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .b-footer-cta .cta-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* FOOTER B */
+  .b-footer {
+    background: #111;
+    padding: 48px 40px 0;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .b-footer .footer-logo {
+    font-family: var(--f-body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .b-footer .footer-tagline {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 220px;
+    margin-bottom: 24px;
+  }
+  .b-footer .social-row {
+    display: flex;
+    gap: 12px;
+  }
+  .b-footer .social-icon {
+    width: 32px; height: 32px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .b-footer .social-icon span { font-size: 10px; color: #666; }
+  .b-footer-bottom {
+    background: #111;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .b-footer-bottom span { font-size: 11px; color: #555; }
+</style>
+</head>
+<body>
+
+<!-- ── SWITCHER ─────────────────────────────────────── -->
+<div class="switcher">
+  <span class="label">#539 Nostro Projects — Wireframes</span>
+  <button class="active" onclick="show('a')" id="btn-a">A — Wemake structuur</button>
+  <button onclick="show('b')" id="btn-b">B — Andere aanpak</button>
+  <span class="note">Klik een wireframe aan om te wisselen</span>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     WIREFRAME A
+══════════════════════════════════════════════════ -->
+<div class="wireframe visible" id="wf-a">
+
+  <!-- NAV -->
+  <nav class="a-nav">
+    <div class="logo-block">Nostro Projects</div>
+    <div class="nav-links">
+      <span>Work</span>
+      <span>Services</span>
+      <span>About</span>
+      <span>Journal</span>
+    </div>
+    <div class="a-nav nav-cta">Get in touch</div>
+  </nav>
+
+  <!-- HERO: volledig beeld + tekst overlay -->
+  <section class="a-hero">
+    <div class="img-placeholder" style="height:100%;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <span>Hero — volledig beeld</span>
+    </div>
+    <div class="overlay">
+      <div class="hero-title">We bouwen<br>met visie.</div>
+      <div class="hero-sub">Nostro Projects realiseert architecturale projecten die blijven. Van eerste schets tot oplevering.</div>
+      <div class="hero-btns">
+        <button class="btn-primary">Bekijk ons werk</button>
+        <button class="btn-outline">Contact</button>
+      </div>
+    </div>
+    <span class="pin">Sectie 1 — Hero: volledig beeld met tekst overlay</span>
+  </section>
+
+  <!-- LATEST WORK -->
+  <section class="a-latest">
+    <div class="header-row">
+      <div class="section-title">Ons werk</div>
+      <a class="see-all" href="#">Alle projecten →</a>
+    </div>
+
+    <!-- Project 1: tekst links + beeld rechts -->
+    <div class="a-project-1" style="position:relative;">
+      <span class="pin" style="position:absolute; top:48px; left:0;">Sectie 2 — Project: tekst links, beeld rechts</span>
+      <div class="info">
+        <div class="proj-nr">Project 01</div>
+        <div class="proj-title">PLTS Office Park<br>Amsterdam</div>
+        <div class="proj-tags">
+          <span class="tag">Architectuur</span>
+          <span class="tag">Renovatie</span>
+          <span class="tag">2024</span>
+        </div>
+        <div class="proj-desc">
+          <div class="text-bar full"></div>
+          <div class="text-bar long"></div>
+          <div class="text-bar med"></div>
+        </div>
+        <div style="margin-top:16px;">
+          <span style="font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border-bottom:1px solid #111; padding-bottom:2px;">Bekijk project →</span>
+        </div>
+      </div>
+      <div class="img-placeholder" style="height:400px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Projectfoto</span>
+      </div>
+    </div>
+
+    <!-- Project 2: groot beeld met overlay -->
+    <div class="a-project-2" style="position:relative;">
+      <span class="pin" style="top:16px; left:0;">Sectie 3 — Project: groot beeld + info-overlay</span>
+      <div class="img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Project — volledig breedte beeld</span>
+      </div>
+      <div class="proj-overlay">
+        <div class="proj-nr">Project 02</div>
+        <div class="proj-title">365 Woontoren Utrecht</div>
+        <div class="proj-tags" style="margin-top:4px;">
+          <span class="tag">Residentieel</span>
+          <span class="tag">Nieuwbouw</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: groot beeld zonder overlay -->
+    <div class="a-project-2" style="position:relative; margin-top:2px;">
+      <span class="pin" style="top:16px; left:0;">Sectie 4 — Project: groot beeld</span>
+      <div class="img-placeholder grey" style="height:460px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Project — volledig breedte beeld (lichtgrijs)</span>
+      </div>
+      <div class="proj-overlay">
+        <div class="proj-nr">Project 03</div>
+        <div class="proj-title">Naam project drie</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="a-cta-strip" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 5 — CTA strip</span>
+    <div class="cta-title">Klaar om uw portfolio te transformeren?</div>
+    <button class="btn-dark" style="margin-top:4px;">Plan een gesprek →</button>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="a-clients" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 6 — Opdrachtgevers: claim + logo's</span>
+    <div class="a-clients-inner">
+      <div class="claim">Daag ons uit te noemen wie wij nog niet voor gewerkt hebben.</div>
+      <div>
+        <div class="logo-row">
+          <div class="logo-box"><span>PLTS</span></div>
+          <div class="logo-box"><span>365</span></div>
+          <div class="logo-box"><span>Mollis</span></div>
+          <div class="logo-box"><span>GS&amp;K</span></div>
+          <div class="logo-box"><span>...</span></div>
+        </div>
+        <div style="font-size:11px; color:#AAA; margin-top:12px; text-align:right; letter-spacing:.06em;">→ als slider bij veel logo's</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <section class="a-footer-cta" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 7 — Footer CTA (donker)</span>
+    <div class="fcta-title">Bouw met ons aan wat blijft.</div>
+    <button class="btn-primary">Neem contact op →</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="a-footer" style="position:relative;">
+    <span class="pin" style="top:16px; left:40px;">Sectie 8 — Footer</span>
+    <div class="footer-col">
+      <div class="col-title" style="color:#fff; font-size:13px; letter-spacing:.12em; font-weight:700; margin-bottom:16px;">Nostro Projects</div>
+      <div class="col-link">© 2025</div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Werk</div>
+      <div class="col-link">Projecten</div>
+      <div class="col-link">Cases</div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Studio</div>
+      <div class="col-link">Over ons</div>
+      <div class="col-link">Team</div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Contact</div>
+      <div class="col-link">hello@nostro.nl</div>
+      <div class="col-link">Instagram</div>
+      <div class="col-link">LinkedIn</div>
+    </div>
+  </footer>
+  <div class="a-footer-bottom">
+    <span>© 2025 Nostro Projects</span>
+    <span>Privacy</span>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     WIREFRAME B
+══════════════════════════════════════════════════ -->
+<div class="wireframe" id="wf-b">
+
+  <!-- NAV -->
+  <nav class="b-nav">
+    <div class="logo-block">Nostro Projects</div>
+    <div class="nav-right">
+      <span>Work</span>
+      <span>Services</span>
+      <span>Studio</span>
+      <span>Contact</span>
+    </div>
+    <div class="b-nav nav-cta">Get in touch</div>
+  </nav>
+
+  <!-- HERO B: gesplitst — tekst links, gestapeld beeld rechts -->
+  <section class="b-hero" style="position:relative;">
+    <span class="pin" style="top:16px; left:40px; z-index:10;">Sectie 1 — Hero: gesplitst (tekst | gestapelde beelden)</span>
+    <div class="text-side">
+      <div class="eyebrow">Architecture &amp; Development</div>
+      <div class="hero-title">We build<br>without<br>limits.</div>
+      <div class="hero-sub">Nostro Projects realiseert architecturale projecten die bijdragen aan de omgeving. Van visie tot oplevering, wij bouwen wat telt.</div>
+      <div class="hero-btns">
+        <button class="btn-dark">Ons werk →</button>
+        <button class="btn-line">Contact</button>
+      </div>
+    </div>
+    <div class="img-side">
+      <div class="img-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Beeld 1 (groot)</span>
+      </div>
+      <div class="img-placeholder grey">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Beeld 2 (kleiner)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBERS -->
+  <div class="b-numbers" style="position:relative;">
+    <span class="pin" style="top:16px; left:40px;">Sectie 2 — Kerngetallen (4 kolommen)</span>
+    <div class="b-stat">
+      <div class="stat-nr">48</div>
+      <div class="stat-label">Projecten afgerond</div>
+    </div>
+    <div class="b-stat">
+      <div class="stat-nr">12+</div>
+      <div class="stat-label">Jaar ervaring</div>
+    </div>
+    <div class="b-stat">
+      <div class="stat-nr">32</div>
+      <div class="stat-label">Vaste opdrachtgevers</div>
+    </div>
+    <div class="b-stat">
+      <div class="stat-nr">6</div>
+      <div class="stat-label">Lopen projecten</div>
+    </div>
+  </div>
+
+  <!-- PROJECTS GRID -->
+  <section class="b-projects" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 3 — Projecten: 2-koloms grid</span>
+    <div class="header-row">
+      <div class="section-title">Geselecteerde projecten</div>
+      <a class="see-all" href="#">Alle projecten →</a>
+    </div>
+    <div class="b-grid">
+      <!-- Breed project -->
+      <div class="b-grid-item wide">
+        <div class="img-placeholder" style="height:480px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Uitgelicht project — volledig breedte</span>
+        </div>
+        <div class="item-info">
+          <div>
+            <div class="item-title">PLTS Office Park Amsterdam</div>
+          </div>
+          <div class="item-type">Architectuur · 2024</div>
+        </div>
+      </div>
+      <!-- Twee halve -->
+      <div class="b-grid-item">
+        <div class="img-placeholder grey" style="height:340px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Projectfoto</span>
+        </div>
+        <div class="item-info">
+          <div class="item-title">365 Woontoren Utrecht</div>
+          <div class="item-type">Residentieel · 2023</div>
+        </div>
+      </div>
+      <div class="b-grid-item">
+        <div class="img-placeholder" style="height:340px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Projectfoto</span>
+        </div>
+        <div class="item-info">
+          <div class="item-title">Project drie naam</div>
+          <div class="item-type">Renovatie · 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH / SERVICES -->
+  <section class="b-approach" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 4 — Werkwijze (donker, 3 kolommen)</span>
+    <div class="section-title">Zo werken wij.</div>
+    <div class="b-approach-cols">
+      <div class="b-approach-col">
+        <div class="col-nr">01</div>
+        <div class="col-title">Strategie &amp; Visie</div>
+        <div class="text-bar full"></div>
+        <div class="text-bar long"></div>
+        <div class="text-bar med"></div>
+      </div>
+      <div class="b-approach-col">
+        <div class="col-nr">02</div>
+        <div class="col-title">Ontwerp &amp; Detail</div>
+        <div class="text-bar full"></div>
+        <div class="text-bar long"></div>
+        <div class="text-bar short"></div>
+      </div>
+      <div class="b-approach-col">
+        <div class="col-nr">03</div>
+        <div class="col-title">Realisatie</div>
+        <div class="text-bar full"></div>
+        <div class="text-bar med"></div>
+        <div class="text-bar long"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS B: logo slider -->
+  <section class="b-clients" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 5 — Opdrachtgevers: logo slider</span>
+    <div class="header-row">
+      <div class="section-title">Onze opdrachtgevers</div>
+    </div>
+    <div class="logo-slider">
+      <div class="logo-slider-track">
+        <div class="logo-item"><span>PLTS</span></div>
+        <div class="logo-item"><span>365</span></div>
+        <div class="logo-item"><span>Mollis</span></div>
+        <div class="logo-item"><span>GS&amp;K</span></div>
+        <div class="logo-item"><span>Linaris</span></div>
+        <div class="logo-item"><span>Vestia</span></div>
+        <div class="logo-item"><span>Boupal</span></div>
+      </div>
+    </div>
+    <div class="slider-nav">
+      <button class="slider-btn">←</button>
+      <button class="slider-btn">→</button>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA B -->
+  <section class="b-footer-cta" style="position:relative;">
+    <span class="pin" style="top:20px; left:40px;">Sectie 6 — Footer CTA (licht, gesplitst)</span>
+    <div class="cta-title">Klaar voor<br>uw volgende<br>project?</div>
+    <div class="cta-right">
+      <div class="cta-text">Of u nu een volledig nieuw project plant of een bestaand pand wilt transformeren, Nostro Projects staat klaar.</div>
+      <div style="display:flex; gap:12px;">
+        <button class="btn-dark">Start een gesprek →</button>
+        <button class="btn-line">Bekijk ons werk</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER B -->
+  <footer class="b-footer" style="position:relative;">
+    <span class="pin" style="top:16px; left:40px;">Sectie 7 — Footer</span>
+    <div>
+      <div class="footer-logo">Nostro Projects</div>
+      <div class="footer-tagline">Wij bouwen projecten die bijdragen aan de omgeving en de tand des tijds doorstaan.</div>
+      <div class="social-row">
+        <div class="social-icon"><span>IG</span></div>
+        <div class="social-icon"><span>LI</span></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Werk</div>
+      <div class="col-link" style="color:#555;">Projecten</div>
+      <div class="col-link" style="color:#555;">Cases</div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Studio</div>
+      <div class="col-link" style="color:#555;">Over ons</div>
+      <div class="col-link" style="color:#555;">Team</div>
+      <div class="col-link" style="color:#555;">Journal</div>
+    </div>
+    <div class="footer-col">
+      <div class="col-title">Contact</div>
+      <div class="col-link" style="color:#555;">hello@nostro.nl</div>
+      <div class="col-link" style="color:#555;">+31 (0)20 ...</div>
+    </div>
+  </footer>
+  <div class="b-footer-bottom">
+    <span>© 2025 Nostro Projects — alle rechten voorbehouden</span>
+    <span>Privacy · Cookies</span>
+  </div>
+
+</div>
+
+<script>
+function show(id) {
+  document.getElementById('wf-a').classList.remove('visible');
+  document.getElementById('wf-b').classList.remove('visible');
+  document.getElementById('btn-a').classList.remove('active');
+  document.getElementById('btn-b').classList.remove('active');
+  document.getElementById('wf-' + id).classList.add('visible');
+  document.getElementById('btn-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+
+</body>
+</html>
