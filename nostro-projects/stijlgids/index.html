@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOSTRO Projects — Stijlgids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Questrial&display=swap" rel="stylesheet">
+
+<style>
+  /* ─── Reset & base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --zwart:   #111111;
+    --koper:   #C8803E;
+    --greige:  #E7E3DA;
+    --taupe:   #A89B87;
+    --wit:     #FFFFFF;
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+    --font-logo-word: 'Sui Generis', 'Trebuchet MS', sans-serif;
+    --font-logo-sub:  'Questrial', 'Trebuchet MS', sans-serif;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: #E8E8E8;
+    color: var(--zwart);
+    font-family: var(--font-body);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Wrapper ─── */
+  .page {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0 0 80px;
+  }
+
+  /* ─── Section label ─── */
+  .label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 28px;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: var(--zwart);
+    padding: 60px 72px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .logo-nostro {
+    font-family: var(--font-logo-word);
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--wit);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .logo-projects {
+    font-family: var(--font-logo-sub);
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    color: var(--koper);
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .header-meta p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--taupe);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .koper-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--koper);
+    margin-left: 4px;
+    vertical-align: middle;
+    margin-bottom: 2px;
+  }
+
+  /* ─── SECTION wrapper ─── */
+  .section {
+    padding: 64px 72px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    background: var(--wit);
+  }
+
+  .section:nth-child(even) {
+    background: var(--greige);
+  }
+
+  /* ─── KLEURENPALET ─── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .swatch-color {
+    height: 160px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+  }
+
+  .swatch-info {
+    background: var(--wit);
+    padding: 16px 18px 20px;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-top: none;
+  }
+
+  .swatch-name {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--zwart);
+    letter-spacing: 0.01em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .swatch-hex {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--taupe);
+    display: block;
+  }
+
+  .swatch-use {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--taupe);
+    display: block;
+    margin-top: 8px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .swatch-border .swatch-color {
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  /* ─── TYPOGRAFIE ─── */
+  .typo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .typo-family {
+    padding: 40px;
+    border-radius: 4px;
+  }
+
+  .typo-family.dark {
+    background: var(--zwart);
+  }
+
+  .typo-family.light {
+    background: var(--greige);
+  }
+
+  .typo-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--koper);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .typo-name {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+
+  .typo-family.dark .typo-name { color: var(--taupe); }
+  .typo-family.light .typo-name { color: var(--taupe); }
+
+  .type-specimen-display {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--wit);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .type-specimen-display em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .type-specimen-body {
+    font-family: var(--font-body);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--zwart);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .type-sizes-display {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .type-size-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .type-size-tag {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    width: 60px;
+    flex-shrink: 0;
+    color: var(--koper);
+  }
+
+  .type-size-sample-display {
+    font-family: var(--font-display);
+    color: var(--wit);
+    line-height: 1;
+  }
+
+  .type-size-sample-body {
+    font-family: var(--font-body);
+    color: var(--zwart);
+    line-height: 1.2;
+  }
+
+  /* ─── LOGO SECTIE ─── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .logo-variant {
+    padding: 60px 48px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .logo-variant.on-dark {
+    background: var(--zwart);
+  }
+
+  .logo-variant.on-light {
+    background: var(--wit);
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .logo-variant.on-greige {
+    background: var(--greige);
+  }
+
+  .logo-variant-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+
+  .logo-variant.on-dark .logo-variant-label { color: var(--taupe); }
+  .logo-variant.on-light .logo-variant-label { color: var(--taupe); }
+  .logo-variant.on-greige .logo-variant-label { color: var(--taupe); }
+
+  .logo-render {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .logo-render .nostro {
+    font-family: var(--font-logo-word);
+    font-size: 44px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .logo-render .projects {
+    font-family: var(--font-logo-sub);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .logo-variant.on-dark .nostro { color: var(--wit); }
+  .logo-variant.on-dark .projects { color: var(--koper); }
+
+  .logo-variant.on-light .nostro { color: var(--zwart); }
+  .logo-variant.on-light .projects { color: var(--koper); }
+
+  .logo-variant.on-greige .nostro { color: var(--zwart); }
+  .logo-variant.on-greige .projects { color: var(--koper); }
+
+  /* ─── LOGO FONTS SECTIE ─── */
+  .logo-fonts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+
+  .logo-font-card {
+    padding: 40px;
+    background: var(--wit);
+    border-radius: 4px;
+  }
+
+  .logo-font-name-display {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--taupe);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .logo-font-specimen-sui {
+    font-family: var(--font-logo-word);
+    font-size: 56px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--zwart);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .logo-font-specimen-que {
+    font-family: var(--font-logo-sub);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    color: var(--zwart);
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .logo-font-role {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--taupe);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.07);
+    padding-top: 16px;
+  }
+
+  .logo-font-role strong {
+    font-weight: 500;
+    color: var(--zwart);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--zwart);
+    padding: 32px 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer p {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--taupe);
+    letter-spacing: 0.05em;
+  }
+
+  .footer .accent { color: var(--koper); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">
+      <img src="LOGO/Nostro Projects Logo wit.svg"
+           alt="Nostro Projects"
+           style="height:72px; width:auto; display:block;">
+    </div>
+    <div class="header-meta">
+      <p>Merkidentiteit <span class="accent">&amp;</span> Stijlgids</p>
+      <p>Versie 0.3 · Juni 2026</p>
+      <p>Fitbrand voor Nostro Projects</p>
+    </div>
+  </header>
+
+  <!-- KLEURENPALET -->
+  <section class="section">
+    <p class="label">01 — Kleurenpalet</p>
+    <div class="palette-grid">
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111111;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Zwart</span>
+          <span class="swatch-hex">#111111</span>
+          <span class="swatch-use">Primaire kleur. Navigatie, hero, donkere secties, tekst op licht.</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C8803E;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Koper</span>
+          <span class="swatch-hex">#C8803E</span>
+          <span class="swatch-use">Accent. CTA-knoppen, iconen, overlines, detail in logo.</span>
+        </div>
+      </div>
+
+      <div class="swatch swatch-border">
+        <div class="swatch-color" style="background:#FFFFFF;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Wit</span>
+          <span class="swatch-hex">#FFFFFF</span>
+          <span class="swatch-use">Achtergrond kaarten, witte secties, tekst op donker.</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E7E3DA; border:1px solid rgba(0,0,0,0.12); box-shadow:inset 0 0 0 1px rgba(255,255,255,0.6);"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Warm Greige</span>
+          <span class="swatch-hex">#E7E3DA</span>
+          <span class="swatch-use">Lichte sectie-achtergronden. Diensten, alinea-breaks.</span>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch-color" style="background:#A89B87;"></div>
+        <div class="swatch-info">
+          <span class="swatch-name">Taupe Sand</span>
+          <span class="swatch-hex">#A89B87</span>
+          <span class="swatch-use">Middentoon secties. USP-blokken, subtiele tekst.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TYPOGRAFIE -->
+  <section class="section">
+    <p class="label">02 — Typografie website</p>
+    <div class="typo-grid">
+
+      <div class="typo-family dark">
+        <span class="typo-label">Display / koppen</span>
+        <span class="typo-name" style="font-family:var(--font-body);">Fraunces — variable font</span>
+        <div class="type-specimen-display">Ruimte<br><em>in beeld</em></div>
+        <div class="type-sizes-display">
+          <div class="type-size-row">
+            <span class="type-size-tag">H1 hero</span>
+            <span class="type-size-sample-display" style="font-size:38px; font-weight:300;">Nostro</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag">H2 sectie</span>
+            <span class="type-size-sample-display" style="font-size:26px; font-weight:300;">Onze aanpak</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag">H3 kaart</span>
+            <span class="type-size-sample-display" style="font-size:19px; font-weight:400;">Turn-key fit-out</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag">Quote</span>
+            <span class="type-size-sample-display" style="font-size:17px; font-style:italic; font-weight:300;">Design &amp; Build</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="typo-family light">
+        <span class="typo-label">Body / interface</span>
+        <span class="typo-name" style="font-family:var(--font-body);">DM Sans — variable font</span>
+        <div class="type-specimen-body">Van gerichte<br>upgrade tot<br>turn-key.</div>
+        <div class="type-sizes-display">
+          <div class="type-size-row">
+            <span class="type-size-tag" style="color:var(--koper);">Overline</span>
+            <span class="type-size-sample-body" style="font-size:10px; letter-spacing:0.18em; text-transform:uppercase; font-weight:500;">Onze diensten</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag" style="color:var(--koper);">Body</span>
+            <span class="type-size-sample-body" style="font-size:15px; font-weight:300;">Nostro realiseert commerciële interieurs van kwaliteit.</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag" style="color:var(--koper);">Label</span>
+            <span class="type-size-sample-body" style="font-size:13px; font-weight:400;">Meer weten →</span>
+          </div>
+          <div class="type-size-row">
+            <span class="type-size-tag" style="color:var(--koper);">Meta</span>
+            <span class="type-size-sample-body" style="font-size:12px; font-weight:300; color:var(--taupe);">Amsterdam · 2024</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOGO FONTS -->
+  <section class="section">
+    <p class="label">03 — Logolettertypen</p>
+    <div class="logo-fonts-grid">
+
+      <div class="logo-font-card">
+        <span class="logo-font-name-display">Sui Generis — logo woordmerk</span>
+        <div class="logo-font-specimen-sui">NOSTRO</div>
+        <p class="logo-font-role">
+          <strong>Gebruik:</strong> het woordmerk "NOSTRO" in het logo.<br>
+          <strong>Snit:</strong> Regular of Light.<br>
+          <strong>Karakter:</strong> geometrisch, strak, autoriteit. Lokaal geïnstalleerd op Mac.
+        </p>
+      </div>
+
+      <div class="logo-font-card">
+        <span class="logo-font-name-display">Questrial — logo subwoord</span>
+        <div class="logo-font-specimen-que">Projects</div>
+        <p class="logo-font-role">
+          <strong>Gebruik:</strong> het woord "Projects" als rustig complement op Sui Generis.<br>
+          <strong>Snit:</strong> Regular.<br>
+          <strong>Karakter:</strong> neutrale grotesque, beschikbaar via Google Fonts.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOGO IN GEBRUIK -->
+  <section class="section">
+    <p class="label">04 — Logo in gebruik</p>
+    <div class="logo-grid">
+
+      <div class="logo-variant on-dark">
+        <img src="LOGO/Nostro Projects Logo wit.svg"
+             alt="Nostro Projects logo wit"
+             style="height:64px; width:auto; display:block;">
+        <span class="logo-variant-label">Primair — wit op zwart</span>
+      </div>
+
+      <div class="logo-variant on-greige">
+        <img src="LOGO/Nostro Projects Logo zwart.svg"
+             alt="Nostro Projects logo zwart"
+             style="height:64px; width:auto; display:block;">
+        <span class="logo-variant-label">Alternatief — zwart op greige</span>
+      </div>
+
+    </div>
+
+    <!-- PNG-versies als fallback-notitie -->
+    <p style="font-family:var(--font-body);font-size:11px;color:var(--taupe);font-weight:300;margin-top:24px;letter-spacing:0.02em;">
+      Beschikbare logobestanden: SVG (web/schaalbaar) · EPS (druk) · PNG (Office-programma's) · AI (bewerken) · Wit en zwart per variant.
+    </p>
+  </section>
+
+  <!-- ICONEN + CTA PREVIEW -->
+  <section class="section" style="background:var(--zwart);">
+    <p class="label" style="color:var(--koper);">05 — Accent &amp; toepassing</p>
+    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:24px; margin-top:0;">
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:4px; padding:32px 28px;">
+        <div style="width:32px;height:32px;border:1.5px solid #C8803E;border-radius:50%;margin-bottom:20px; display:flex;align-items:center;justify-content:center;">
+          <div style="width:6px;height:6px;border-radius:50%;background:#C8803E;"></div>
+        </div>
+        <p style="font-family:var(--font-display);font-size:17px;color:var(--wit);font-weight:400;margin-bottom:8px;">Uitvoerbaar<br>ontwerp</p>
+        <p style="font-family:var(--font-body);font-size:12px;color:var(--taupe);font-weight:300;line-height:1.6;">Van schets tot tekening die de bouwer direct kan lezen.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:4px; padding:32px 28px;">
+        <div style="width:32px;height:32px;border:1.5px solid #C8803E;border-radius:4px;margin-bottom:20px;"></div>
+        <p style="font-family:var(--font-display);font-size:17px;color:var(--wit);font-weight:400;margin-bottom:8px;">Kleinschalige<br>ingrepen</p>
+        <p style="font-family:var(--font-body);font-size:12px;color:var(--taupe);font-weight:300;line-height:1.6;">Gerichte upgrades zonder groot bouwproces.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:4px; padding:32px 28px;">
+        <div style="width:32px;height:2px;background:#C8803E;margin-bottom:8px;"></div>
+        <div style="width:24px;height:2px;background:#C8803E;margin-bottom:8px;"></div>
+        <div style="width:28px;height:2px;background:#C8803E;margin-bottom:20px;"></div>
+        <p style="font-family:var(--font-display);font-size:17px;color:var(--wit);font-weight:400;margin-bottom:8px;">Turn-key<br>fit-outs</p>
+        <p style="font-family:var(--font-body);font-size:12px;color:var(--taupe);font-weight:300;line-height:1.6;">Totale transformatie, één aanspreekpunt.</p>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:4px; padding:32px 28px;">
+        <div style="width:32px;height:2px;background:#C8803E;margin-bottom:6px; border-radius:1px;"></div>
+        <div style="width:32px;height:2px;background:rgba(200,128,62,0.5);margin-bottom:6px; border-radius:1px;"></div>
+        <div style="width:32px;height:2px;background:rgba(200,128,62,0.25);margin-bottom:20px; border-radius:1px;"></div>
+        <p style="font-family:var(--font-display);font-size:17px;color:var(--wit);font-weight:400;margin-bottom:8px;">Afbouw &amp;<br>afwerking</p>
+        <p style="font-family:var(--font-body);font-size:12px;color:var(--taupe);font-weight:300;line-height:1.6;">Vlakken, detaillering en materiaal tot het einde.</p>
+      </div>
+
+    </div>
+
+    <!-- CTA sample -->
+    <div style="margin-top:40px; display:flex; align-items:center; gap:24px;">
+      <div style="background:#C8803E; padding:14px 32px; border-radius:2px; display:inline-block;">
+        <span style="font-family:var(--font-body);font-size:13px;font-weight:500;letter-spacing:0.06em;color:var(--wit);">Neem contact op</span>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.2); padding:14px 32px; border-radius:2px; display:inline-block;">
+        <span style="font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:0.06em;color:var(--wit);">Bekijk projecten</span>
+      </div>
+      <span style="font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--taupe);">CTA-knoppen</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Nostro Projects <span class="accent">·</span> Merkidentiteit versie 0.3</p>
+    <p>Opgesteld door <span class="accent">Fitbrand</span> · Juni 2026 · Niet voor extern gebruik</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
