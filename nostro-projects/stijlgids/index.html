@@ -432,7 +432,31 @@
   }
 
   .footer .accent { color: var(--goud); }
+
+  /* ─── ICONEN ─── */
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 12px;
+    background: #1a1a1a;
+    border-radius: 8px;
+  }
+  .icon-item i {
+    width: 28px;
+    height: 28px;
+    color: #C09E68;
+    stroke-width: 1.5;
+  }
+  .icon-item span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: #A89B87;
+    letter-spacing: 0.03em;
+  }
 </style>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
 
@@ -665,6 +689,41 @@
     </div>
   </section>
 
+  <!-- ICONEN -->
+  <section class="section">
+    <div class="section-label">06 — Iconen</div>
+    <p style="font-family: var(--font-body); font-size: 14px; color: var(--taupe); margin-bottom: 32px; max-width: 560px;">
+      Lucide Icons — open source, React-ready. Lijndikte 1.5px, stroke-linecap round.
+      Accentkleur: <strong style="color: var(--goud);">#C09E68</strong>.
+      Gebruik via <code>lucide-react</code> in Next.js of download op
+      <a href="https://lucide.dev" target="_blank" style="color: var(--goud);">lucide.dev</a>.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 24px;">
+
+      <div class="icon-item"><i data-lucide="compass"></i><span>Compass</span></div>
+      <div class="icon-item"><i data-lucide="wrench"></i><span>Wrench</span></div>
+      <div class="icon-item"><i data-lucide="key"></i><span>Key</span></div>
+      <div class="icon-item"><i data-lucide="layers"></i><span>Layers</span></div>
+      <div class="icon-item"><i data-lucide="ruler"></i><span>Ruler</span></div>
+      <div class="icon-item"><i data-lucide="pen-tool"></i><span>PenTool</span></div>
+      <div class="icon-item"><i data-lucide="building-2"></i><span>Building2</span></div>
+      <div class="icon-item"><i data-lucide="layout-grid"></i><span>LayoutGrid</span></div>
+      <div class="icon-item"><i data-lucide="hard-hat"></i><span>HardHat</span></div>
+      <div class="icon-item"><i data-lucide="hammer"></i><span>Hammer</span></div>
+      <div class="icon-item"><i data-lucide="check-circle"></i><span>CheckCircle</span></div>
+      <div class="icon-item"><i data-lucide="clipboard-list"></i><span>ClipboardList</span></div>
+      <div class="icon-item"><i data-lucide="users"></i><span>Users</span></div>
+      <div class="icon-item"><i data-lucide="calendar"></i><span>Calendar</span></div>
+      <div class="icon-item"><i data-lucide="shield"></i><span>Shield</span></div>
+      <div class="icon-item"><i data-lucide="award"></i><span>Award</span></div>
+      <div class="icon-item"><i data-lucide="arrow-right"></i><span>ArrowRight</span></div>
+      <div class="icon-item"><i data-lucide="map-pin"></i><span>MapPin</span></div>
+      <div class="icon-item"><i data-lucide="phone"></i><span>Phone</span></div>
+      <div class="icon-item"><i data-lucide="mail"></i><span>Mail</span></div>
+
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <p>Nostro Projects <span class="accent">·</span> Merkidentiteit versie 0.4</p>
@@ -673,5 +732,6 @@
 
 </div>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>
