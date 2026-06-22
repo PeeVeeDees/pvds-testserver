@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>#539 NOSTRO PROJECTS — Wireframes v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zwart:  #111111;
+    --goud:   #C09E68;
+    --greige: #E7E3DA;
+    --taupe:  #A89B87;
+    --wit:    #FFFFFF;
+    --fh: 'Fraunces', Georgia, serif;
+    --fb: 'DM Sans', Helvetica, Arial, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--fb); background:#EBEBEB; color:#111; }
+
+  /* ── SWITCHER ─────────────────────────────────── */
+  .switcher {
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:#111; display:flex; align-items:center;
+    padding:0 24px; height:52px; gap:0;
+  }
+  .sw-label {
+    color:#888; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; margin-right:24px; white-space:nowrap;
+  }
+  .switcher button {
+    background:none; border:none; color:#666; font-size:13px;
+    font-family:inherit; padding:16px 22px; cursor:pointer;
+    letter-spacing:.04em; border-bottom:2px solid transparent;
+    transition:color .18s, border-color .18s;
+  }
+  .switcher button.active { color:#fff; border-bottom-color:#fff; }
+  .sw-note { margin-left:auto; color:#444; font-size:11px; letter-spacing:.06em; }
+
+  /* ── WIREFRAME ─────────────────────────────────── */
+  .wf { display:none; padding-top:52px; }
+  .wf.on { display:block; }
+
+  /* ── SHARED ELEMENTS ───────────────────────────── */
+  .ph {
+    background:#D8E8F0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:10px; color:#8AAEC0;
+  }
+  .ph.g { background:#E2E2E2; color:#AAAAAA; }
+  .ph.dk { background:#1E1E1C; color:#3A3A38; }
+  .ph svg { width:28px; height:28px; opacity:.6; }
+  .ph span { font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+
+  /* eyebrow */
+  .eb {
+    font-family:var(--fb); font-size:11px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--goud); margin-bottom:18px;
+  }
+  .eb.m { color:rgba(17,17,17,.45); }
+  .eb.l { color:rgba(255,255,255,.4); }
+
+  /* headings */
+  .h1 {
+    font-family:var(--fh); font-size:clamp(44px,6vw,88px);
+    font-weight:400; line-height:1.02; letter-spacing:-.02em; color:#111;
+  }
+  .h2 {
+    font-family:var(--fh); font-size:clamp(30px,4vw,60px);
+    font-weight:400; line-height:1.1; letter-spacing:-.015em; color:#111;
+  }
+  .h2.w { color:#fff; }
+  .h2.sm { font-size:clamp(22px,2.4vw,32px); }
+  .body {
+    font-family:var(--fb); font-size:17px; font-weight:300;
+    line-height:1.78; color:#444;
+  }
+  .body.l { color:rgba(255,255,255,.5); }
+
+  /* buttons */
+  .btn-g {
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--fb); font-size:13px; font-weight:500;
+    background:var(--goud); color:#111; padding:13px 26px;
+    border:none; cursor:pointer; border-radius:2px; letter-spacing:.01em;
+  }
+  .btn-od {
+    display:inline-flex; align-items:center;
+    font-family:var(--fb); font-size:13px; font-weight:400;
+    background:transparent; color:rgba(17,17,17,.7);
+    padding:13px 26px; border:1px solid rgba(17,17,17,.25);
+    cursor:pointer; border-radius:2px;
+  }
+  .btn-ol {
+    display:inline-flex; align-items:center;
+    font-family:var(--fb); font-size:13px; font-weight:400;
+    background:transparent; color:rgba(255,255,255,.7);
+    padding:13px 26px; border:1px solid rgba(255,255,255,.25);
+    cursor:pointer; border-radius:2px;
+  }
+
+  /* ── NAV ────────────────────────────────────────── */
+  .nav {
+    height:64px; display:flex; align-items:center;
+    justify-content:space-between; padding:0 40px;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid rgba(0,0,0,.07);
+  }
+  .nav .wm {
+    font-family:var(--fb); font-size:14px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase; color:#111;
+  }
+  .nav-links { display:flex; gap:36px; }
+  .nav-links span { font-size:13px; color:#555; cursor:pointer; }
+  .nav .cta {
+    font-family:var(--fb); font-size:12px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase;
+    background:#111; color:#fff; padding:10px 20px; cursor:pointer; border-radius:2px;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  .ftr {
+    background:#090909; padding:32px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.05);
+  }
+  .ftr-logo {
+    display:flex; align-items:center; gap:6px;
+    font-family:var(--fh); font-size:14px;
+    color:rgba(255,255,255,.4); letter-spacing:.04em;
+  }
+  .ftr-logo .d {
+    width:5px; height:5px; border-radius:50%;
+    background:var(--goud); opacity:.7; flex-shrink:0;
+  }
+  .ftr-links { display:flex; gap:28px; }
+  .ftr-links span { font-size:12px; color:rgba(255,255,255,.25); cursor:pointer; }
+  .ftr-copy { font-size:11px; color:rgba(255,255,255,.15); }
+
+  /* ══════════════════════════════════════════════════
+     HOME
+  ══════════════════════════════════════════════════ */
+
+  /* HERO */
+  .hero {
+    position:relative; height:100vh; min-height:640px; overflow:hidden;
+  }
+  .hero-bg { position:absolute; inset:0; }
+  .hero-ov {
+    position:absolute; inset:0; background:rgba(0,0,0,.18);
+  }
+  .hero-ct {
+    position:absolute; bottom:88px; left:40px; max-width:920px; z-index:10;
+  }
+  .hero-ey {
+    font-family:var(--fb); font-size:11px; font-weight:500;
+    letter-spacing:.14em; text-transform:uppercase;
+    color:var(--goud); margin-bottom:22px;
+  }
+  .hero-h1 {
+    font-family:var(--fh); font-size:clamp(46px,6.5vw,100px);
+    font-weight:400; line-height:1.0; letter-spacing:-.02em;
+    color:#111; margin-bottom:22px;
+  }
+  .hero-sub {
+    font-family:var(--fb); font-size:17px; font-weight:300;
+    color:rgba(68,68,68,.9); margin-bottom:40px;
+    max-width:480px; line-height:1.7;
+  }
+  .hero-btns { display:flex; align-items:center; gap:12px; }
+  .hero-scroll {
+    position:absolute; bottom:36px; right:52px;
+    display:flex; flex-direction:column; align-items:center; gap:8px; z-index:10;
+  }
+  .hero-scroll .st {
+    font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+    color:rgba(17,17,17,.25); writing-mode:vertical-rl;
+  }
+  .hero-scroll .sl {
+    width:1px; height:40px;
+    background:linear-gradient(to bottom,rgba(17,17,17,.2),transparent);
+  }
+
+  /* AANPAK */
+  .aanpak { background:var(--greige); display:flex; }
+  .aanpak-img { width:55%; min-height:580px; flex-shrink:0; }
+  .aanpak-tx {
+    flex:1; padding:80px 64px;
+    display:flex; flex-direction:column; justify-content:center; gap:24px;
+  }
+
+  /* DIENSTEN */
+  .diensten { background:var(--greige); padding:80px 40px; border-top:1px solid rgba(0,0,0,.06); }
+  .diensten-hdr { max-width:1100px; margin:0 auto 52px; }
+  .diensten-grid {
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+  }
+  .d-card { background:#fff; padding:56px; }
+  .d-icon {
+    width:48px; height:48px; margin-bottom:22px;
+    color:var(--goud); background:rgba(192,158,104,.1);
+    border-radius:2px; display:flex; align-items:center; justify-content:center;
+  }
+  .d-title {
+    font-family:var(--fh); font-size:22px; font-weight:400;
+    letter-spacing:-.01em; color:#111; margin-bottom:12px;
+  }
+  .d-body { font-family:var(--fb); font-size:16px; font-weight:300; color:#555; line-height:1.75; }
+
+  /* FOTOBALK */
+  .fotobalk { display:flex; gap:2px; height:380px; }
+  .fotobalk .fb-item { flex:1; }
+
+  /* PROJECTEN */
+  .projecten { background:var(--zwart); padding:80px 40px; }
+  .pj-inner { max-width:1100px; margin:0 auto; }
+  .pj-hdr { margin-bottom:52px; }
+  .pj-grid {
+    display:grid; grid-template-columns:3fr 2fr;
+    grid-template-rows:1fr 1fr; gap:2px; min-height:560px;
+  }
+  .pj-large { grid-row:span 2; min-height:560px; }
+  .pj-small { min-height:278px; }
+  .wm-row {
+    display:flex; flex-wrap:wrap; align-items:center;
+    gap:0 28px; margin-top:40px; padding-top:32px;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  .wm-item {
+    font-family:var(--fb); font-size:11px; font-weight:500;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:rgba(255,255,255,.35); padding:5px 0;
+  }
+  .wm-sep { color:rgba(255,255,255,.15); }
+
+  /* BEELDBREAK */
+  .beeldbreak {
+    position:relative; height:65vh; min-height:380px; overflow:hidden;
+  }
+  .bb-ov {
+    position:absolute; inset:0; background:rgba(0,0,0,.3);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .bb-quote {
+    font-family:var(--fh); font-size:clamp(36px,5vw,68px);
+    font-weight:400; line-height:1.05; color:#fff;
+    text-align:center; letter-spacing:-.01em;
+  }
+
+  /* WERKWIJZE */
+  .werkwijze { background:var(--zwart); padding:80px 40px; border-top:1px solid rgba(255,255,255,.04); }
+  .ww-inner { max-width:1100px; margin:0 auto; }
+  .ww-hdr { margin-bottom:52px; }
+  .ww-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+  .stap { background:rgba(255,255,255,.04); padding:28px 28px 36px; }
+  .stap-nr {
+    font-family:var(--fh); font-size:72px; font-weight:300;
+    color:var(--goud); opacity:.4; line-height:1; margin-bottom:16px;
+  }
+  .stap-tt {
+    font-family:var(--fh); font-size:22px; font-weight:400;
+    color:#fff; margin-bottom:10px;
+  }
+  .stap-bd { font-family:var(--fb); font-size:16px; font-weight:300; color:rgba(255,255,255,.5); line-height:1.7; }
+
+  /* WAAROM */
+  .waarom { background:var(--taupe); padding:80px 40px; }
+  .wm-inner2 { max-width:1100px; margin:0 auto; }
+  .wm-hdr { margin-bottom:52px; }
+  .usp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .usp { background:rgba(255,255,255,.55); padding:28px 28px 32px; }
+  .usp.ph-usp {
+    background:rgba(255,255,255,.2);
+    border:1.5px dashed rgba(192,158,104,.3);
+  }
+  .usp-ln { width:24px; height:2px; background:var(--goud); margin-bottom:20px; }
+  .usp-ln.dim { opacity:.3; }
+  .usp-tt { font-family:var(--fh); font-size:17px; font-weight:400; color:#111; margin-bottom:10px; }
+  .usp-bd { font-family:var(--fb); font-size:13px; font-weight:300; color:#4a4037; line-height:1.7; }
+
+  /* CONTACT CTA */
+  .cta-sec { background:var(--zwart); padding:120px 40px; text-align:center; }
+  .cta-inner { max-width:1100px; margin:0 auto; }
+  .cta-h2 { max-width:580px; margin:20px auto; }
+  .cta-sub {
+    font-family:var(--fb); font-size:15px; font-weight:300;
+    color:rgba(255,255,255,.4); max-width:440px;
+    margin:0 auto 44px; line-height:1.7;
+  }
+
+  /* ══════════════════════════════════════════════════
+     OVER
+  ══════════════════════════════════════════════════ */
+
+  .pg-hdr { background:var(--greige); padding:80px 40px 88px; }
+  .pg-hdr-inner { max-width:1100px; margin:0 auto; }
+
+  .over-missie { background:#fff; padding:80px 40px; }
+  .ov-m-inner {
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;
+  }
+  .ov-quote {
+    font-family:var(--fh); font-size:clamp(20px,2.5vw,30px);
+    font-weight:400; line-height:1.4; letter-spacing:-.01em; color:#111;
+  }
+
+  .over-profiel { background:var(--greige); padding:80px 40px; border-top:1px solid rgba(0,0,0,.06); }
+  .ov-p-inner {
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+  }
+  .ov-img { min-height:520px; }
+  .ov-tx {
+    background:#fff; padding:56px;
+    display:flex; flex-direction:column; gap:28px;
+  }
+  .kern { padding-bottom:24px; border-bottom:1px solid rgba(0,0,0,.08); }
+  .kern:last-child { border-bottom:none; padding-bottom:0; }
+  .kern-tt { font-family:var(--fh); font-size:18px; font-weight:400; color:#111; margin-bottom:6px; }
+  .kern-bd { font-family:var(--fb); font-size:15px; font-weight:300; color:#555; line-height:1.7; }
+
+  /* ══════════════════════════════════════════════════
+     CONTACT
+  ══════════════════════════════════════════════════ */
+
+  .ct-form { background:#fff; padding:80px 40px; }
+  .ct-inner {
+    max-width:1100px; margin:0 auto;
+    display:grid; grid-template-columns:1.3fr 1fr; gap:80px; align-items:start;
+  }
+  .fg { display:flex; flex-direction:column; gap:6px; margin-bottom:24px; }
+  .fl {
+    font-family:var(--fb); font-size:11px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:#888;
+  }
+  .fi {
+    height:48px; background:var(--greige); border:none;
+    border-bottom:1px solid rgba(0,0,0,.15); padding:0 16px;
+    font-family:var(--fb); font-size:15px; color:#bbb;
+    display:flex; align-items:center;
+  }
+  .fta {
+    height:140px; background:var(--greige);
+    border:none; border-bottom:1px solid rgba(0,0,0,.15);
+    padding:14px 16px; font-family:var(--fb);
+    font-size:15px; color:#bbb; display:flex;
+  }
+  .ct-info { display:flex; flex-direction:column; gap:32px; padding-top:8px; }
+  .ci { display:flex; flex-direction:column; gap:8px; }
+  .ci-l {
+    font-family:var(--fb); font-size:11px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:rgba(17,17,17,.4);
+  }
+  .ci-v { font-family:var(--fb); font-size:16px; font-weight:300; color:#111; line-height:1.6; }
+  .ct-img { margin-top:32px; height:280px; }
+
+</style>
+</head>
+<body>
+
+<!-- SWITCHER -->
+<div class="switcher">
+  <span class="sw-label">#539 Nostro Projects — Wireframes v2</span>
+  <button class="active" onclick="show('home')" id="btn-home">Home</button>
+  <button onclick="show('over')" id="btn-over">Over</button>
+  <button onclick="show('contact')" id="btn-contact">Contact</button>
+  <span class="sw-note">Klik een pagina aan om te wisselen</span>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════════ -->
+<div class="wf on" id="wf-home">
+
+  <nav class="nav">
+    <div class="wm">Nostro Projects</div>
+    <div class="nav-links">
+      <span>Aanpak</span>
+      <span>Diensten</span>
+      <span>Over</span>
+    </div>
+    <div class="cta">Maak kennis</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="ph dk" style="height:100%;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Hero — volledig beeld</span>
+      </div>
+    </div>
+    <div class="hero-ov"></div>
+    <div class="hero-ct">
+      <div class="hero-ey">Design &amp; Build</div>
+      <div class="hero-h1">Wij realiseren<br>commerciële interieurs.</div>
+      <div class="hero-sub">Van gerichte upgrades tot turn-key transformaties. Voor opdrachtgevers die kwaliteit verwachten in uitstraling én uitvoering.</div>
+      <div class="hero-btns">
+        <button class="btn-g">Onze aanpak →</button>
+        <button class="btn-od">Maak kennis</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span class="st">Scroll</span>
+      <div class="sl"></div>
+    </div>
+  </section>
+
+  <!-- AANPAK -->
+  <section class="aanpak">
+    <div class="aanpak-img">
+      <div class="ph" style="height:100%;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        <span>Sfeerbeeld aanpak</span>
+      </div>
+    </div>
+    <div class="aanpak-tx">
+      <div class="eb">Wat wij doen</div>
+      <p class="h2 sm">NOSTRO staat met beide benen aan de realisatiekant. Niet als klassiek ontwerpbureau, en ook niet als traditionele aannemer.</p>
+      <div class="body" style="display:flex; flex-direction:column; gap:16px;">
+        <p>NOSTRO realiseert commerciële interieurs voor opdrachtgevers die kwaliteit verwachten in zowel uitstraling als uitvoering. Soms gaat het om een gerichte upgrade. Soms om een complete transformatie. Altijd met hetzelfde resultaat: een ruimte die beter werkt, beter oogt en beter voelt.</p>
+        <p>Wij bewegen ons tussen idee en uitvoering, maar staan met beide benen aan de realisatiekant. Als design &amp; build partner die commerciële interieurs van begin tot eind kan ontwerpen, organiseren en realiseren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIENSTEN -->
+  <section class="diensten">
+    <div class="diensten-hdr">
+      <div class="eb">Diensten</div>
+      <div class="h2">Van afgebakende ingrepen<br>tot complete trajecten.</div>
+    </div>
+    <div class="diensten-grid">
+      <div class="d-card">
+        <div class="d-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+        </div>
+        <div class="d-title">Uitvoerbaar ontwerp</div>
+        <div class="d-body">Vertaling van wensen en ambities naar een ontwerp of uitwerking die technisch, functioneel en financieel klopt.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="d-title">Kleinschalige ingrepen</div>
+        <div class="d-body">Gerichte aanpassingen en upgrades in bestaande commerciële interieurs, zoals ontvangstgebieden, boardrooms, signing en meubilair.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+        </div>
+        <div class="d-title">Turnkey fit-outs</div>
+        <div class="d-body">Volledige realisatie van commerciële interieurs, met één duidelijke lijn van uitvraag tot oplevering.</div>
+      </div>
+      <div class="d-card">
+        <div class="d-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div class="d-title">Afbouw, interieur en afwerking</div>
+        <div class="d-body">Afbouw, maatwerk interieur, inrichting en afwerking als integraal onderdeel van het project.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTOBALK -->
+  <div class="fotobalk">
+    <div class="fb-item"><div class="ph g" style="height:100%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Beeld 1</span></div></div>
+    <div class="fb-item"><div class="ph" style="height:100%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Beeld 2</span></div></div>
+    <div class="fb-item"><div class="ph g" style="height:100%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Beeld 3</span></div></div>
+  </div>
+
+  <!-- PROJECTEN -->
+  <section class="projecten">
+    <div class="pj-inner">
+      <div class="pj-hdr">
+        <div class="eb l">Ervaring</div>
+        <div class="h2 w">Ervaring in omgevingen<br>waar merk, gebruik en beleving<br>samenkomen.</div>
+      </div>
+      <div class="pj-grid">
+        <div class="pj-large">
+          <div class="ph g" style="height:100%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Groot projectfoto</span>
+          </div>
+        </div>
+        <div class="pj-small">
+          <div class="ph" style="height:100%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Detail</span>
+          </div>
+        </div>
+        <div class="pj-small">
+          <div class="ph g" style="height:100%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Detail</span>
+          </div>
+        </div>
+      </div>
+      <div class="wm-row">
+        <span class="wm-item">PLTS</span><span class="wm-sep"> · </span>
+        <span class="wm-item">3SIXTY5</span><span class="wm-sep"> · </span>
+        <span class="wm-item">Club Reformer</span><span class="wm-sep"> · </span>
+        <span class="wm-item">Nebius</span><span class="wm-sep"> · </span>
+        <span class="wm-item">NXP</span><span class="wm-sep"> · </span>
+        <span class="wm-item">Teleperformance</span><span class="wm-sep"> · </span>
+        <span class="wm-item">Mobilis</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEELDBREAK -->
+  <div class="beeldbreak">
+    <div class="ph dk" style="height:100%; position:absolute; inset:0;"></div>
+    <div class="bb-ov">
+      <div class="bb-quote">Wij realiseren.<br>Dat is het verschil.</div>
+    </div>
+  </div>
+
+  <!-- WERKWIJZE -->
+  <section class="werkwijze">
+    <div class="ww-inner">
+      <div class="ww-hdr">
+        <div class="eb l">Werkwijze</div>
+        <div class="h2 w">Praktisch, zorgvuldig<br>en realisatiegericht.</div>
+      </div>
+      <div class="ww-grid">
+        <div class="stap">
+          <div class="stap-nr">1</div>
+          <div class="stap-tt">Begrijpen</div>
+          <div class="stap-bd">We brengen de vraag, de ruimte, de randvoorwaarden en de ambitie helder in beeld.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">2</div>
+          <div class="stap-tt">Vertalen</div>
+          <div class="stap-bd">We vertalen dat naar een concrete aanpak, een ontwerpuitwerking of een realisatieplan.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">3</div>
+          <div class="stap-tt">Toetsen</div>
+          <div class="stap-bd">We toetsen keuzes op uitvoerbaarheid, budget, planning en eindkwaliteit.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">4</div>
+          <div class="stap-tt">Realiseren</div>
+          <div class="stap-bd">We coördineren, bouwen, leveren en ronden af. Minder ruis, meer grip.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAAROM -->
+  <section class="waarom">
+    <div class="wm-inner2">
+      <div class="wm-hdr">
+        <div class="eb m">Waarom NOSTRO</div>
+        <div class="h2 sm">Omdat goede ruimtes meer<br>vragen dan alleen een goed idee.</div>
+      </div>
+      <div class="usp-grid">
+        <div class="usp">
+          <div class="usp-ln"></div>
+          <div class="usp-tt">Realisatiegericht</div>
+          <div class="usp-bd">Wij zijn gericht op maken, verbeteren en opleveren.</div>
+        </div>
+        <div class="usp">
+          <div class="usp-ln"></div>
+          <div class="usp-tt">Breed inzetbaar</div>
+          <div class="usp-bd">Van gerichte upgrades tot complete trajecten.</div>
+        </div>
+        <div class="usp">
+          <div class="usp-ln"></div>
+          <div class="usp-tt">Merkbewust</div>
+          <div class="usp-bd">Wij begrijpen dat uitstraling en beleving onderdeel zijn van de opgave.</div>
+        </div>
+        <div class="usp">
+          <div class="usp-ln"></div>
+          <div class="usp-tt">Pragmatisch</div>
+          <div class="usp-bd">Geen onnodige lagen of procesdrukte, wel overzicht en voortgang.</div>
+        </div>
+        <div class="usp">
+          <div class="usp-ln"></div>
+          <div class="usp-tt">Flexibel</div>
+          <div class="usp-bd">Geschikt voor zowel afgebakende vragen als grotere transformaties.</div>
+        </div>
+        <div class="usp ph-usp">
+          <div class="usp-ln dim"></div>
+          <div class="usp-tt" style="color:#a0917f;">Open slot</div>
+          <div class="usp-bd" style="color:#b5a794;">Eventueel zesde USP of verwijzing naar /over.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="cta-sec">
+    <div class="cta-inner">
+      <div class="eb l">Contact</div>
+      <div class="h2 w cta-h2">Een commerciële ruimte die toe is aan verbetering of vernieuwing?</div>
+      <div class="cta-sub">Dan maken we graag kennis. Vertel ons over uw project en we kijken samen wat er mogelijk is.</div>
+      <button class="btn-g">Start een gesprek</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <div class="ftr-logo">NOSTRO <div class="d"></div></div>
+    <div class="ftr-links">
+      <span>Home</span><span>Aanpak</span><span>Diensten</span><span>Over</span><span>Contact</span>
+    </div>
+    <div class="ftr-copy">© 2026 Nostro Projects</div>
+  </footer>
+
+</div><!-- /HOME -->
+
+
+<!-- ══════════════════════════════════════════════════
+     OVER
+══════════════════════════════════════════════════ -->
+<div class="wf" id="wf-over">
+
+  <nav class="nav">
+    <div class="wm">Nostro Projects</div>
+    <div class="nav-links">
+      <span>Aanpak</span>
+      <span>Diensten</span>
+      <span style="color:#111; font-weight:500;">Over</span>
+    </div>
+    <div class="cta">Maak kennis</div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="pg-hdr">
+    <div class="pg-hdr-inner">
+      <div class="eb">Studio</div>
+      <div class="h1">Over Nostro Projects</div>
+      <p class="body" style="margin-top:24px; max-width:560px;">
+        Wij zijn NOSTRO. Een design &amp; build partner die commerciële interieurs van begin tot eind ontwerpt, organiseert en realiseert.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSIE -->
+  <section class="over-missie">
+    <div class="ov-m-inner">
+      <div>
+        <div class="eb">Wie wij zijn</div>
+        <div class="ov-quote">"NOSTRO staat met beide benen aan de realisatiekant. Niet als klassiek ontwerpbureau, en ook niet als traditionele aannemer."</div>
+      </div>
+      <div class="body" style="display:flex; flex-direction:column; gap:20px;">
+        <p>NOSTRO realiseert commerciële interieurs voor opdrachtgevers die kwaliteit verwachten in zowel uitstraling als uitvoering. Soms gaat het om een gerichte upgrade. Soms om een complete transformatie.</p>
+        <p>Altijd met hetzelfde resultaat: een ruimte die beter werkt, beter oogt en beter voelt.</p>
+        <p>Wij bewegen ons tussen idee en uitvoering. Als design &amp; build partner die commerciële interieurs van begin tot eind kan ontwerpen, organiseren en realiseren.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFIEL -->
+  <section class="over-profiel">
+    <div class="ov-p-inner">
+      <div class="ov-img">
+        <div class="ph" style="height:100%;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Studio / team beeld</span>
+        </div>
+      </div>
+      <div class="ov-tx">
+        <div class="eb">Wat ons onderscheidt</div>
+        <div class="kern">
+          <div class="kern-tt">Realisatiegericht</div>
+          <div class="kern-bd">Wij zijn gericht op maken, verbeteren en opleveren. Niet op processen of papier.</div>
+        </div>
+        <div class="kern">
+          <div class="kern-tt">Breed inzetbaar</div>
+          <div class="kern-bd">Van gerichte upgrades tot complete trajecten, met één aanspreekpunt voor de hele opgave.</div>
+        </div>
+        <div class="kern">
+          <div class="kern-tt">Merkbewust</div>
+          <div class="kern-bd">Wij begrijpen dat uitstraling en beleving onderdeel zijn van de opgave, niet een bijzaak.</div>
+        </div>
+        <div class="kern">
+          <div class="kern-tt">Pragmatisch</div>
+          <div class="kern-bd">Geen onnodige lagen of procesdrukte, wel overzicht en voortgang.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WERKWIJZE (gedeeld patroon) -->
+  <section class="werkwijze">
+    <div class="ww-inner">
+      <div class="ww-hdr">
+        <div class="eb l">Werkwijze</div>
+        <div class="h2 w">Praktisch, zorgvuldig<br>en realisatiegericht.</div>
+      </div>
+      <div class="ww-grid">
+        <div class="stap">
+          <div class="stap-nr">1</div>
+          <div class="stap-tt">Begrijpen</div>
+          <div class="stap-bd">We brengen de vraag, de ruimte, de randvoorwaarden en de ambitie helder in beeld.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">2</div>
+          <div class="stap-tt">Vertalen</div>
+          <div class="stap-bd">We vertalen dat naar een concrete aanpak, een ontwerpuitwerking of een realisatieplan.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">3</div>
+          <div class="stap-tt">Toetsen</div>
+          <div class="stap-bd">We toetsen keuzes op uitvoerbaarheid, budget, planning en eindkwaliteit.</div>
+        </div>
+        <div class="stap">
+          <div class="stap-nr">4</div>
+          <div class="stap-tt">Realiseren</div>
+          <div class="stap-bd">We coördineren, bouwen, leveren en ronden af. Minder ruis, meer grip.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="cta-sec">
+    <div class="cta-inner">
+      <div class="eb l">Contact</div>
+      <div class="h2 w cta-h2">Een commerciële ruimte die toe is aan verbetering of vernieuwing?</div>
+      <div class="cta-sub">Dan maken we graag kennis. Vertel ons over uw project en we kijken samen wat er mogelijk is.</div>
+      <button class="btn-g">Start een gesprek</button>
+    </div>
+  </section>
+
+  <footer class="ftr">
+    <div class="ftr-logo">NOSTRO <div class="d"></div></div>
+    <div class="ftr-links">
+      <span>Home</span><span>Aanpak</span><span>Diensten</span><span>Over</span><span>Contact</span>
+    </div>
+    <div class="ftr-copy">© 2026 Nostro Projects</div>
+  </footer>
+
+</div><!-- /OVER -->
+
+
+<!-- ══════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════ -->
+<div class="wf" id="wf-contact">
+
+  <nav class="nav">
+    <div class="wm">Nostro Projects</div>
+    <div class="nav-links">
+      <span>Aanpak</span>
+      <span>Diensten</span>
+      <span>Over</span>
+    </div>
+    <div class="cta">Maak kennis</div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="pg-hdr">
+    <div class="pg-hdr-inner">
+      <div class="eb">Contact</div>
+      <div class="h1">Maak kennis.</div>
+      <p class="body" style="margin-top:24px; max-width:480px;">
+        Vertel ons over uw project en we kijken samen wat er mogelijk is.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORMULIER -->
+  <section class="ct-form">
+    <div class="ct-inner">
+      <div>
+        <div class="fg">
+          <div class="fl">Naam</div>
+          <div class="fi">Uw naam</div>
+        </div>
+        <div class="fg">
+          <div class="fl">Bedrijf</div>
+          <div class="fi">Bedrijfsnaam</div>
+        </div>
+        <div class="fg">
+          <div class="fl">E-mail</div>
+          <div class="fi">uw@email.nl</div>
+        </div>
+        <div class="fg">
+          <div class="fl">Beschrijf uw project of vraag</div>
+          <div class="fta">Wat wilt u realiseren?</div>
+        </div>
+        <div style="margin-top:12px;">
+          <button class="btn-g">Verstuur bericht</button>
+        </div>
+      </div>
+      <div>
+        <div class="ct-info">
+          <div class="ci">
+            <div class="ci-l">E-mail</div>
+            <div class="ci-v">info@nostro.nl</div>
+          </div>
+          <div class="ci">
+            <div class="ci-l">Telefoon</div>
+            <div class="ci-v">Op aanvraag</div>
+          </div>
+          <div class="ci">
+            <div class="ci-l">Werkgebied</div>
+            <div class="ci-v">Nederland</div>
+          </div>
+        </div>
+        <div class="ct-img">
+          <div class="ph" style="height:100%;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span>Sfeerbeeld</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ftr">
+    <div class="ftr-logo">NOSTRO <div class="d"></div></div>
+    <div class="ftr-links">
+      <span>Home</span><span>Aanpak</span><span>Diensten</span><span>Over</span><span>Contact</span>
+    </div>
+    <div class="ftr-copy">© 2026 Nostro Projects</div>
+  </footer>
+
+</div><!-- /CONTACT -->
+
+
+<script>
+function show(id) {
+  document.querySelectorAll('.wf').forEach(el => el.classList.remove('on'));
+  document.querySelectorAll('.switcher button').forEach(btn => btn.classList.remove('active'));
+  document.getElementById('wf-' + id).classList.add('on');
+  document.getElementById('btn-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
