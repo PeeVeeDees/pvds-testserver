@@ -357,6 +357,26 @@
       color: rgba(255,255,255,0.15);
     }
 
+    /* ── MARQUEE ── */
+    .wf-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      padding: 0 40px;
+      animation: wf-marquee-scroll 24s linear infinite;
+      width: max-content;
+    }
+    .wf-marquee-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes wf-marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .wf-marquee-item {
+      flex-shrink: 0;
+    }
+
     /* ── HOE WE WERKEN ── */
     .s-hoe { background: var(--wit); }
     .stappen-grid {
@@ -623,77 +643,35 @@
 </section>
 
 <!-- ── PROJECTEN / ERVARING ── -->
-<section class="s-projecten" id="projecten">
-  <div class="max-w">
-    <p class="overline">Ervaring</p>
-    <h2 class="section-title">Ervaring in omgevingen<br>waar merk, gebruik en beleving<br>samenkomen.</h2>
+<section id="projecten" style="padding: 80px 0; background: #111111; overflow: hidden;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 48px 48px;">
+    <p style="font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #C09E68; font-weight: 500; margin: 0 0 12px;">
+      Ervaring
+    </p>
+    <h2 style="font-family: 'Fraunces', Georgia, serif; font-size: clamp(26px, 3vw, 40px); font-weight: 400; color: #ffffff; margin: 0;">
+      Gerealiseerd voor
+    </h2>
+  </div>
 
-    <!-- Logo grid — Clearbit logo service, wit gerendered op donker -->
-    <div class="logo-grid">
+  <div style="display: flex; overflow: hidden; mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);">
+    <div class="wf-marquee-track">
 
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/plts.com"
-          alt="PLTS"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">PLTS</span>
-      </div>
+      <div class="wf-marquee-item"><img src="klanten/nxp-color.svg"             alt="NXP"             style="height:30px;width:auto;opacity:0.75;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.75"></div>
+      <div class="wf-marquee-item"><img src="klanten/teleperformance-color.svg" alt="Teleperformance" style="height:30px;width:auto;opacity:0.75;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.75"></div>
+      <div class="wf-marquee-item"><img src="klanten/club-reformer.svg"         alt="Club Reformer"   style="height:30px;width:auto;opacity:0.80;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.80"></div>
+      <div class="wf-marquee-item"><img src="klanten/nebius-wit.svg"            alt="Nebius"          style="height:30px;width:auto;opacity:0.55;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
+      <div class="wf-marquee-item"><img src="klanten/plts-wit.svg"              alt="PLTS"            style="height:30px;width:auto;opacity:0.55;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
+      <div class="wf-marquee-item"><img src="klanten/3sixty5.svg"               alt="3SIXTY5"         style="height:30px;width:auto;opacity:0.55;filter:brightness(0) invert(1);transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
 
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/3sixty5.nl"
-          alt="3SIXTY5"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">3SIXTY5</span>
-      </div>
-
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/clubreformer.com"
-          alt="Club Reformer"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">Club Reformer</span>
-      </div>
-
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/nebius.com"
-          alt="Nebius"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">Nebius</span>
-      </div>
-
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/nxp.com"
-          alt="NXP"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">NXP</span>
-      </div>
-
-      <div class="logo-cell">
-        <img
-          src="https://logo.clearbit.com/teleperformance.com"
-          alt="Teleperformance"
-          onerror="this.style.display='none';this.parentNode.querySelector('.logo-fallback').style.display='block'"
-        >
-        <span class="logo-fallback" style="display:none">Teleperformance</span>
-      </div>
+      <!-- duplicaat voor naadloze loop -->
+      <div class="wf-marquee-item"><img src="klanten/nxp-color.svg"             alt="NXP"             style="height:30px;width:auto;opacity:0.75;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.75"></div>
+      <div class="wf-marquee-item"><img src="klanten/teleperformance-color.svg" alt="Teleperformance" style="height:30px;width:auto;opacity:0.75;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.75"></div>
+      <div class="wf-marquee-item"><img src="klanten/club-reformer.svg"         alt="Club Reformer"   style="height:30px;width:auto;opacity:0.80;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.80"></div>
+      <div class="wf-marquee-item"><img src="klanten/nebius-wit.svg"            alt="Nebius"          style="height:30px;width:auto;opacity:0.55;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
+      <div class="wf-marquee-item"><img src="klanten/plts-wit.svg"              alt="PLTS"            style="height:30px;width:auto;opacity:0.55;transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
+      <div class="wf-marquee-item"><img src="klanten/3sixty5.svg"               alt="3SIXTY5"         style="height:30px;width:auto;opacity:0.55;filter:brightness(0) invert(1);transition:opacity .3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.55"></div>
 
     </div>
-
-    <!-- Overige klanten -->
-    <div class="klanten-rij">
-      <span class="klant-item">Mobilis</span>
-      <span class="klant-item">ClubLife</span>
-      <span class="klant-item">Prime Dental Alliance</span>
-    </div>
-
   </div>
 </section>
 
