@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#559 PTbyJay — wireframe homepage v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ===========================================================
+   #559 PTBYJAY — wireframe v1
+   Font: Barlow Semi Condensed (koppen) + Barlow (body).
+   Reden: dichtstbijzijnde vrije/Google-variant van DIN Alternate.
+   Barlow is ontworpen met dezelfde signage/DIN-genen (Amerikaanse
+   kentekenplaten als vertrekpunt), even technisch en leesbaar,
+   maar geen kopie van een ontwerpersfont. Peter heeft Barlow en
+   Barlow Condensed ook al volledig in _FONTS/ staan.
+   =========================================================== */
+
+:root{
+  --radius: 16px;
+  --radius-sm: 10px;
+  --container: 1180px;
+  --gap: 1.5rem;
+
+  /* vast: conversiekleur, ongeacht kleurvoorstel */
+  --orange: #EB6708;
+  --orange-hover: #B34F04;
+  --orange-tint: #FDEDE0;
+
+  /* placeholder-kleuren (grijs, per protocol) */
+  --ph-bg: #E4E4E1;
+  --ph-icon: #A9A9A4;
+}
+
+/* ---------- kleurvoorstel 1: antraciet & krijtwit ---------- */
+body[data-kleur="1"]{
+  --dark: #201C1A;
+  --dark-soft: #35302C;
+  --bg: #F7F3EC;
+  --bg-alt: #EFE8DC;
+  --text: #201C1A;
+  --muted: #6B645C;
+  --line: #E2DACB;
+}
+/* ---------- kleurvoorstel 2: petrolgroen & zand ---------- */
+body[data-kleur="2"]{
+  --dark: #0F3D3A;
+  --dark-soft: #16524D;
+  --bg: #F1E9DC;
+  --bg-alt: #E7DCC8;
+  --text: #17231F;
+  --muted: #4B5C57;
+  --line: #DCD0B8;
+}
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:'Barlow', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.hdg{
+  font-family:'Barlow Semi Condensed', sans-serif;
+  font-weight:700;
+  line-height:1.08;
+  margin:0 0 .5rem;
+  letter-spacing:.2px;
+}
+h1{ font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight:800; }
+h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+h3{ font-size: 1.2rem; font-weight:600; }
+p{ margin:0 0 1rem; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+.container{ width:min(100% - 2.5rem, var(--container)); margin-inline:auto; }
+.eyebrow{
+  display:inline-block; font-family:'Barlow Semi Condensed', sans-serif;
+  font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  font-size:.78rem; color:var(--orange); margin-bottom:.6rem;
+}
+section{ padding: clamp(3rem,6vw,5.5rem) 0; }
+
+/* ---------- placeholders ---------- */
+.ph{
+  background:var(--ph-bg);
+  border-radius:var(--radius);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ph-icon);
+  min-height:160px;
+}
+.ph svg{ width:38px; height:38px; opacity:.7; }
+.ph-round{ border-radius:50%; }
+
+/* ---------- pin-annotaties ---------- */
+.pin{
+  position:absolute; width:26px; height:26px; border-radius:50%;
+  background:#FFD23F; color:#3A2E00; font-weight:700; font-size:.8rem;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 0 3px #fff, 0 2px 6px rgba(0,0,0,.25);
+  cursor:help; z-index:5; font-family:'Barlow', sans-serif;
+}
+.pin-anchor{ position:relative; }
+
+/* ---------- knoppen ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.85rem 1.6rem; border-radius:999px; font-weight:600;
+  font-size:.98rem; border:2px solid transparent; white-space:nowrap;
+}
+.btn-primary{ background:var(--orange); color:#fff; }
+.btn-primary:hover{ background:var(--orange-hover); }
+.btn-ghost{ background:transparent; color:var(--dark); border-color:var(--dark); }
+.btn-ghost:hover{ background:var(--dark); color:#fff; }
+.btn-ghost-light{ background:transparent; color:#fff; border-color:rgba(255,255,255,.6); }
+.btn-sm{ padding:.6rem 1.2rem; font-size:.88rem; }
+
+/* ============ TOGGLE-BALK (werkbalk voor wireframe, niet onderdeel van het ontwerp) ============ */
+.wf-toolbar{
+  position:fixed; bottom:0; left:0; right:0; z-index:100;
+  background:#111; color:#fff; font-family:'Barlow',sans-serif;
+  padding:.7rem 1rem; display:flex; gap:1.2rem; align-items:center;
+  flex-wrap:wrap; font-size:.85rem;
+}
+.wf-toolbar strong{ color:#FFD23F; font-weight:700; }
+.wf-group{ display:flex; gap:.4rem; align-items:center; }
+.wf-toolbar button{
+  background:#2a2a2a; color:#fff; border:1px solid #444; border-radius:8px;
+  padding:.4rem .8rem; font-size:.82rem;
+}
+.wf-toolbar button.active{ background:var(--orange); border-color:var(--orange); }
+body{ padding-bottom:64px; }
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky; top:0; z-index:20; background:var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  min-height:84px; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.logo-tekst{
+  font-family:'Barlow Semi Condensed', sans-serif; font-weight:800;
+  font-size:1.7rem; color:var(--orange); letter-spacing:.3px;
+}
+nav.main-nav{ display:flex; gap:1.6rem; align-items:center; }
+nav.main-nav a{ font-weight:600; font-size:.96rem; }
+.has-dropdown{ position:relative; }
+.dropdown{
+  position:absolute; top:130%; left:0; background:#fff; border:1px solid var(--line);
+  border-radius:var(--radius-sm); padding:.5rem; min-width:190px; display:none;
+  box-shadow:0 12px 24px rgba(0,0,0,.08);
+}
+.has-dropdown:hover .dropdown{ display:block; }
+.dropdown a{ display:block; padding:.5rem .6rem; border-radius:6px; font-weight:500; }
+.dropdown a:hover{ background:var(--bg-alt); }
+.header-actions{ display:flex; gap:.6rem; align-items:center; }
+.menu-toggle{
+  display:none; border:1px solid var(--line); background:#fff; border-radius:8px;
+  padding:.5rem .8rem; font-weight:600;
+}
+@media (max-width:900px){
+  nav.main-nav{
+    position:absolute; top:100%; left:0; right:0; background:var(--bg);
+    flex-direction:column; align-items:flex-start; padding:1rem 1.25rem;
+    border-bottom:1px solid var(--line); display:none; gap:.8rem;
+  }
+  nav.main-nav.open{ display:flex; }
+  .dropdown{ position:static; display:block; box-shadow:none; border:none; padding:.2rem 0 0 .6rem; }
+  .menu-toggle{ display:inline-block; }
+}
+
+/* ============ HERO ============ */
+.hero{ position:relative; padding-top: clamp(3rem,7vw,5rem); overflow:visible; }
+.hero-grid{ display:grid; gap:2.5rem; align-items:center; }
+.hero-copy .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-top:1.4rem; }
+.hero-tabs{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+.hero-tab{
+  background:var(--bg-alt); border:1px solid var(--line); border-radius:999px;
+  padding:.55rem 1.1rem; font-weight:600; font-size:.9rem; color:var(--muted);
+}
+.hero-tab.active{ background:var(--dark); color:#fff; border-color:var(--dark); }
+.hero-tab-panels{ margin-top:.4rem; }
+.hero-tab-panel{ display:none; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.3rem; }
+.hero-tab-panel.active{ display:block; }
+.hero-tab-panel p{ margin:0 0 .6rem; color:var(--muted); }
+.hero-tab-panel a{ font-weight:700; color:var(--orange); font-size:.92rem; }
+.hero-media .ph{ min-height:420px; }
+
+/* structuurvariant A: hero zoals mylife (beeld/video-band vol breed, tabs bovenop) */
+body[data-structuur="A"] .hero-a{ display:block; }
+body[data-structuur="A"] .hero-b{ display:none; }
+.hero-a .hero-media.full{ min-height:480px; border-radius:0 0 var(--radius) var(--radius); position:relative; }
+.hero-a .hero-tabs{ position:relative; z-index:2; margin-top:-2.4rem; margin-bottom:1.8rem; }
+.hero-a .hero-overlay-copy{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  padding: 0 3rem; color:#fff;
+}
+.hero-a .hero-overlay-copy .eyebrow{ color:#FFD9A8; }
+.hero-a .hero-overlay-copy h1{ color:#fff; }
+.hero-a .hero-overlay-copy p{ color:#EFE9DD; max-width:34ch; }
+
+/* structuurvariant B: asymmetrisch, tekst/beeld naast elkaar */
+body[data-structuur="B"] .hero-a{ display:none; }
+body[data-structuur="B"] .hero-b{ display:block; }
+.hero-b .hero-grid{ grid-template-columns: 1.05fr .95fr; }
+.hero-b .hero-media .ph{ border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; min-height:460px; }
+@media (max-width:940px){
+  .hero-b .hero-grid{ grid-template-columns:1fr; }
+  .hero-a .hero-overlay-copy{ padding:0 1.4rem; }
+}
+
+/* ============ LESSEN ============ */
+.section-head{ max-width:640px; margin-bottom:2.2rem; }
+.lessen-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap); }
+body[data-structuur="B"] .lessen-grid{
+  grid-template-columns: repeat(4, minmax(260px,1fr)); overflow-x:auto; padding-bottom:.5rem;
+  scroll-snap-type:x mandatory;
+}
+body[data-structuur="B"] .les-card{ scroll-snap-align:start; }
+@media (max-width:1000px){ .lessen-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .lessen-grid{ grid-template-columns:1fr; } }
+.les-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:1.4rem; display:flex; flex-direction:column; gap:.8rem;
+}
+.les-card .ph{ min-height:150px; }
+.les-card p{ color:var(--muted); font-size:.94rem; flex-grow:1; }
+.les-card .btn-row{ display:flex; gap:.6rem; flex-wrap:wrap; }
+
+/* ============ TESTIMONIALS ============ */
+.testi-wrap{ position:relative; }
+.testi-track{
+  overflow-x:auto; scroll-behavior:smooth; scroll-snap-type:x mandatory;
+  -ms-overflow-style:none; scrollbar-width:none;
+}
+.testi-track::-webkit-scrollbar{ display:none; }
+.testi-slides{ display:flex; gap:1.25rem; }
+.testi-card{
+  flex:0 0 calc((100% - 2*1.25rem)/3);
+  scroll-snap-align:start;
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:1.8rem 1.6rem; display:flex; flex-direction:column; align-items:flex-start;
+  min-height:300px;
+}
+@media (max-width:900px){ .testi-card{ flex-basis: calc((100% - 1.25rem)/2); } }
+@media (max-width:600px){ .testi-card{ flex-basis: 84%; } }
+.testi-card .ph{ width:56px; height:56px; min-height:0; flex:none; margin-bottom:1.1rem; }
+.testi-name{ font-weight:700; font-family:'Barlow Semi Condensed',sans-serif; }
+.testi-role{ font-size:.82rem; color:var(--orange); font-weight:600; margin-bottom:.9rem; }
+.testi-quote{ color:var(--muted); font-size:.95rem; margin:0; padding-top:.2rem; }
+.testi-arrow{
+  position:absolute; top:50%; translate:0 -50%; background:#fff; border:1px solid var(--line);
+  width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem; z-index:3;
+}
+.testi-arrow.prev{ left:-18px; } .testi-arrow.next{ right:-18px; }
+@media (max-width:700px){ .testi-arrow{ display:none; } }
+
+/* ============ CTA-BAND ============ */
+.cta-band{ background:var(--dark); color:#fff; border-radius:var(--radius); }
+.cta-band .container{ padding: clamp(2.4rem,5vw,3.6rem) 2.2rem; }
+.cta-band .eyebrow{ color:#FFD9A8; }
+.cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
+.cta-inner p{ color:#E7E2D8; max-width:46ch; margin:0; }
+body[data-structuur="B"] .cta-inner{ display:grid; grid-template-columns:1.2fr .8fr; align-items:center; }
+body[data-structuur="B"] .cta-inner .ph{ min-height:180px; background:rgba(255,255,255,.08); }
+body[data-structuur="B"] .cta-inner .ph svg{ opacity:.5; filter:invert(1); }
+
+/* ============ FOOTER (vast, geen A/B-verschil) ============ */
+footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem; }
+.footer-grid{
+  display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:2rem;
+  padding: clamp(2.5rem,5vw,3.5rem) 0 2rem;
+}
+@media (max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .footer-grid{ grid-template-columns:1fr; } }
+.footer-grid h4{
+  font-family:'Barlow Semi Condensed',sans-serif; font-size:1.05rem; font-weight:700;
+  color:#fff; margin-bottom:.9rem;
+}
+.footer-grid p, .footer-grid li{ color:#C9C2B4; font-size:.92rem; }
+.footer-grid ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; }
+.footer-legal a{ display:block; margin-top:.5rem; font-size:.85rem; color:#C9C2B4; text-decoration:underline; }
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12); padding:1.1rem 0; font-size:.8rem; color:#9A9284;
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+}
+.hours-row{ display:flex; justify-content:space-between; gap:1rem; }
+
+/* ============ LEGENDA ============ */
+.legenda{ background:#fff; border-top:4px solid var(--orange); }
+.legenda .container{ padding: 2.2rem 0 3rem; }
+.legenda h3{ margin-bottom:1rem; }
+.legenda ol{ padding-left:1.2rem; display:grid; gap:.6rem; }
+.legenda ol li::marker{ font-weight:700; color:var(--orange); }
+.swatches{ display:flex; gap:.8rem; margin:1rem 0 1.6rem; flex-wrap:wrap; }
+.swatch{ display:flex; align-items:center; gap:.5rem; font-size:.85rem; }
+.swatch i{ width:22px; height:22px; border-radius:6px; display:inline-block; border:1px solid rgba(0,0,0,.1); }
+
+</style>
+</head>
+<body data-structuur="A" data-kleur="1">
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-tekst">PTbyJay</div>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false">Menu</button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#">Home</a>
+      <div class="has-dropdown">
+        <a href="#lessen">Lessen ▾</a>
+        <div class="dropdown">
+          <a href="#">Personal training</a>
+          <a href="#">Groepslessen</a>
+          <a href="#">GYMbyJ</a>
+        </div>
+      </div>
+      <a href="#">Rooster GYMbyJ</a>
+      <a href="#">Massages</a>
+      <a href="#">Contact</a>
+      <a href="#">Over mij</a>
+    </nav>
+
+    <div class="header-actions pin-anchor">
+      <a class="btn btn-primary btn-sm" href="#">Boek je gratis proefles</a>
+      <a class="btn btn-ghost btn-sm" href="#">Word lid</a>
+      <span class="pin" style="top:-10px; right:-10px;" title="Pin 1 — 'Word lid'-knop staat nog niet vast. Peter twijfelt of dit er echt bij komt naast de proefles-pil.">1</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO A (mylife-achtig, breed beeld + tabs erbovenop) ============ -->
+<section class="hero hero-a">
+  <div class="container pin-anchor">
+    <div class="hero-media full ph">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      <div class="hero-overlay-copy">
+        <span class="eyebrow">Personal training &amp; boksen · Berkel en Rodenrijs &amp; Bergschenhoek</span>
+        <h1>Jij zet de stap.<br>Ik loop met je mee.</h1>
+        <p>Kracht, conditie en zelfvertrouwen opbouw je niet alleen. Met de juiste begeleiding zet je sneller en veiliger stappen, of je nu net begint of al jaren sport.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#cta">Boek je gratis proefles</a>
+          <a class="btn btn-ghost-light" href="#lessen">Bekijk de lessen</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-tabs" id="heroTabs">
+      <button class="hero-tab active" data-tab="pt">Personal training</button>
+      <button class="hero-tab" data-tab="boks">Groepsles boksen</button>
+      <button class="hero-tab" data-tab="kind">Kinderles</button>
+      <button class="hero-tab" data-tab="pp">Parent &amp; Punch</button>
+    </div>
+    <div class="hero-tab-panels" id="heroPanels">
+      <div class="hero-tab-panel active" data-panel="pt">
+        <p>1-op-1 begeleiding naar een hoger niveau: pads, krachttraining en leefstijl, afgestemd op jou.</p>
+        <a href="#les-pt">Bekijk personal training ↓</a>
+      </div>
+      <div class="hero-tab-panel" data-panel="boks">
+        <p>Techniek, conditie en werken aan jezelf, in een groep die elkaar scherp houdt.</p>
+        <a href="#les-boks">Bekijk groepsles boksen ↓</a>
+      </div>
+      <div class="hero-tab-panel" data-panel="kind">
+        <p>Spelenderwijs techniek leren, met een warming-up en spel op maat van het kind.</p>
+        <a href="#les-kind">Bekijk de kinderles ↓</a>
+      </div>
+      <div class="hero-tab-panel" data-panel="pp">
+        <p>Ouder en kind samen op de mat: verbinden, weerbaar worden en grenzen leren aangeven.</p>
+        <a href="#les-pp">Bekijk Parent &amp; Punch ↓</a>
+      </div>
+    </div>
+
+    <span class="pin" style="top:8px; left:-6px;" title="Pin 2 — Vier wisselknoppen in de hero, geïnspireerd op mylife.nl. Elke knop toont een korte tekst met link naar de bijbehorende lessenkaart verderop.">2</span>
+  </div>
+</section>
+
+<!-- ============ HERO B (eigen vrijheid, asymmetrisch) ============ -->
+<section class="hero hero-b">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Personal training &amp; boksen · Berkel en Rodenrijs &amp; Bergschenhoek</span>
+        <h1>Jij zet de stap.<br>Ik loop met je mee.</h1>
+        <p>Kracht, conditie en zelfvertrouwen opbouw je niet alleen. Met de juiste begeleiding zet je sneller en veiliger stappen, of je nu net begint of al jaren sport.</p>
+
+        <div class="hero-tabs">
+          <button class="hero-tab active" data-tab2="pt">Personal training</button>
+          <button class="hero-tab" data-tab2="boks">Groepsles boksen</button>
+          <button class="hero-tab" data-tab2="kind">Kinderles</button>
+          <button class="hero-tab" data-tab2="pp">Parent &amp; Punch</button>
+        </div>
+        <div class="hero-tab-panels" id="heroPanels2">
+          <div class="hero-tab-panel active" data-panel2="pt"><p>1-op-1 begeleiding naar een hoger niveau: pads, krachttraining en leefstijl, afgestemd op jou.</p><a href="#les-pt">Bekijk personal training ↓</a></div>
+          <div class="hero-tab-panel" data-panel2="boks"><p>Techniek, conditie en werken aan jezelf, in een groep die elkaar scherp houdt.</p><a href="#les-boks">Bekijk groepsles boksen ↓</a></div>
+          <div class="hero-tab-panel" data-panel2="kind"><p>Spelenderwijs techniek leren, met een warming-up en spel op maat van het kind.</p><a href="#les-kind">Bekijk de kinderles ↓</a></div>
+          <div class="hero-tab-panel" data-panel2="pp"><p>Ouder en kind samen op de mat: verbinden, weerbaar worden en grenzen leren aangeven.</p><a href="#les-pp">Bekijk Parent &amp; Punch ↓</a></div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#cta">Boek je gratis proefles</a>
+          <a class="btn btn-ghost" href="#lessen">Bekijk de lessen</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="ph" style="min-height:460px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LESSEN ============ -->
+<section id="lessen">
+  <div class="container">
+    <div class="section-head pin-anchor">
+      <span class="eyebrow">Onze lessen</span>
+      <h2>Voor elk doel een passende les</h2>
+      <p style="color:var(--muted)">Vier manieren om te trainen bij PTbyJay, van 1-op-1 tot samen met je kind op de mat.</p>
+      <span class="pin" style="top:-6px; right:-30px;" title="Pin 3 — Peter wil hier StoryBrand-copy: Jay als gids, de bezoeker als held. Onderstaande knoppen zijn al herschreven, de kaartteksten volgen in fase 6.">3</span>
+    </div>
+
+    <div class="lessen-grid">
+      <article class="les-card" id="les-pt">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="3.2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+        <h3>Personal training</h3>
+        <p>Tijdens een PT-sessie begeleid ik je naar een hoger niveau. Dit kan door middel van pads, krachttraining en het aanpassen van je leefstijl. Je zult merken dat ik aandacht voor detail heb, maar ook jou als individu centraal stel. Bij mij staan veiligheid, plezier en resultaat voorop!</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm" href="#">Plan je gratis intake</a>
+          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        </div>
+      </article>
+
+      <article class="les-card" id="les-boks">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <h3>Groepsles boksen</h3>
+        <p>Met een lidmaatschap zal ik mijn best doen om jou de technieken bij te brengen. Dit omvat speelse oefeningen die tegelijkertijd ook behoorlijk intensief zijn. Voor mij is het essentieel dat er tijdens de lessen hard gewerkt wordt, maar af en toe een luchtige opmerking tussendoor is zeker te waarderen! Het is voor mij essentieel dat iedereen aan zijn eigen verbetering werkt, zichzelf kan verdedigen en vitaal blijft of wordt.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm" href="#">Boek een proefles</a>
+          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        </div>
+      </article>
+
+      <article class="les-card" id="les-kind">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.6"/><path d="M6 21c0-4 2.6-6.5 6-6.5s6 2.5 6 6.5"/></svg></div>
+        <h3>Kinderles</h3>
+        <p>Tijdens de kinderles starten we met een warming-up in de vorm van een spelletje dat trainingselementen bevat. De technieken worden gepresenteerd binnen de belevingswereld van het kind. Indien de tijd het toelaat, sluiten we af met een spelletje. De nadruk tijdens de les ligt op het aanleren van één of twee technieken.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm" href="#">Boek de proefles voor je kind</a>
+          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        </div>
+      </article>
+
+      <article class="les-card" id="les-pp">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg></div>
+        <h3>Parent &amp; Punch</h3>
+        <p>Ouder en kind boks-lessenreeks. In deze lessen wordt het kickboksen gebruikt om ouders en kinderen met elkaar te verbinden. We doen oefeningen op een speelse manier die voor de kinderen leuk en uitdagend zijn. De kinderen leren zichzelf te verdedigen, weerbaar te worden en grenzen aan te geven.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-sm" href="#">Boek samen een proefles</a>
+          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        </div>
+      </article>
+    </div>
+    <p style="margin-top:1rem; font-size:.82rem; color:var(--muted);"><em>Pin 4 — de tweede, omlijnde knop ("Meer informatie") per kaart is nog niet zeker. Full-color knop staat vast als hoofd-CTA, de ghost-knop is optioneel: mensen iets te kiezen geven, maar nog geen besluit of dit er echt bij komt.</em></p>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section style="background:var(--bg-alt);">
+  <div class="container">
+    <div class="section-head" style="margin-inline:auto; text-align:center;">
+      <span class="eyebrow">Wat klanten zeggen</span>
+      <h2>Zij gingen je voor</h2>
+    </div>
+
+    <div class="testi-wrap">
+      <button class="testi-arrow prev" id="testiPrev" aria-label="Vorige">‹</button>
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-slides" id="testiSlides">
+          <div class="testi-card">
+            <div class="ph ph-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+            <div class="testi-name">Naam Achternaam</div>
+            <div class="testi-role">PT-klant sinds 2025</div>
+            <p class="testi-quote">"Placeholder-quote: korte, geloofwaardige uitspraak over resultaat en begeleiding."</p>
+          </div>
+          <div class="testi-card">
+            <div class="ph ph-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+            <div class="testi-name">Naam Achternaam</div>
+            <div class="testi-role">Groepsles boksen</div>
+            <p class="testi-quote">"Placeholder-quote: nadruk op sfeer in de groep en het harde werken."</p>
+          </div>
+          <div class="testi-card">
+            <div class="ph ph-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+            <div class="testi-name">Ouder van deelnemer</div>
+            <div class="testi-role">Parent &amp; Punch</div>
+            <p class="testi-quote">"Placeholder-quote: over de band tussen ouder en kind tijdens de les."</p>
+          </div>
+          <div class="testi-card">
+            <div class="ph ph-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+            <div class="testi-name">Naam Achternaam</div>
+            <div class="testi-role">Kinderles</div>
+            <p class="testi-quote">"Placeholder-quote: over plezier en de eerste techniekjes van het kind."</p>
+          </div>
+        </div>
+      </div>
+      <button class="testi-arrow next" id="testiNext" aria-label="Volgende">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONVERSIE-CTA ============ -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-band pin-anchor">
+      <div class="container">
+        <div class="cta-inner">
+          <div>
+            <span class="eyebrow">Klaar voor de eerste stap?</span>
+            <h2 style="color:#fff;">Jij hebt de wil.<br>Ik heb het plan.</h2>
+            <p>Twijfelen is normaal, beginnen is de kunst. In een gratis proefles ervaar je hoe we samen toewerken naar meer kracht, conditie en zelfvertrouwen. Zonder verplichtingen.</p>
+          </div>
+          <div>
+            <a class="btn btn-primary" href="#" style="font-size:1.05rem;">Boek je gratis proefles</a>
+          </div>
+        </div>
+      </div>
+      <span class="pin" style="top:10px; right:10px;" title="Pin 5 — Herschreven volgens StoryBrand: Jay is de gids, de bezoeker is de held. 'Ter waarde van €9,99' is bewust weggelaten, dat detail voegde niets toe aan de belofte.">5</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER (vast, geen A/B) ============ -->
+<footer class="site-footer">
+  <div class="container pin-anchor">
+    <div class="footer-grid">
+      <div>
+        <h4>PTbyJay</h4>
+        <p>Professionele begeleiding en coaching om de beste versie van jezelf te worden door middel van fitness, boksen en mindset.</p>
+        <div class="footer-legal">
+          <a href="#">Algemene voorwaarden</a>
+          <a href="#">Privacybeleid</a>
+        </div>
+      </div>
+      <div>
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a href="#">Over mij</a></li>
+          <li><a href="#">Rooster</a></li>
+          <li><a href="#">Lessen</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Gouden Uillaan 36, 2652KJ Berkel en Rodenrijs</li>
+          <li>Groeneweg 27, 2661AL Bergschenhoek</li>
+          <li>Telefoon: 06 54 29 69 87</li>
+          <li>Mail: infojeroy@ptbyj.nl</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Openingstijden</h4>
+        <ul>
+          <li class="hours-row"><span>Ma</span><span>17:30 – 20:00</span></li>
+          <li class="hours-row"><span>Di</span><span>19:00 – 21:00</span></li>
+          <li class="hours-row"><span>Wo</span><span>17:00 – 20:00</span></li>
+          <li class="hours-row"><span>Do</span><span>18:45 – 21:00</span></li>
+          <li class="hours-row"><span>Vr – Zo</span><span>Gesloten</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container" style="padding-inline:0;">
+      <span>© PTbyJay</span>
+      <span>Wireframe v1 — #559</span>
+    </div>
+    <span class="pin" style="top:6px; left:-6px;" title="Pin 6 — Naamgeving overal doorgevoerd als PTbyJay, ook in de footer (was GYMbyJay in de oude site-content). Mondelinge bevestiging met Jay staat nog gepland, zie NU.md #559.">6</span>
+  </div>
+</footer>
+
+<!-- ============ LEGENDA ============ -->
+<section class="legenda">
+  <div class="container">
+    <h3>Legenda &amp; open punten</h3>
+    <div class="swatches" id="swatchLegend"></div>
+    <ol>
+      <li><strong>Pin 1</strong> — "Word lid"-knop naast de proefles-pil: nog niet besloten.</li>
+      <li><strong>Pin 2</strong> — Vier hero-wisselknoppen, geïnspireerd op mylife.nl, eigen invulling.</li>
+      <li><strong>Pin 3</strong> — StoryBrand-copy: Jay als gids, bezoeker als held. Kaartteksten volgen in fase 6, knoppen zijn al herschreven.</li>
+      <li><strong>Pin 4</strong> — Tweede (ghost) knop per lessenkaart: optioneel, nog geen besluit.</li>
+      <li><strong>Pin 5</strong> — Hoofd-CTA herschreven, "ter waarde van €9,99" bewust weggelaten.</li>
+      <li><strong>Pin 6</strong> — Naamgeving overal PTbyJay, ook in de footer. Mondelinge bevestiging met Jay staat nog gepland, zie NU.md #559.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ TOOLBAR ============ -->
+<div class="wf-toolbar">
+  <strong>Wireframe #559 PTbyJay</strong>
+  <div class="wf-group">
+    Structuur:
+    <button data-set="structuur" data-val="A" class="active">A — dicht bij mylife.nl</button>
+    <button data-set="structuur" data-val="B">B — eigen vrijheid</button>
+  </div>
+  <div class="wf-group">
+    Kleur:
+    <button data-set="kleur" data-val="1" class="active">1 — antraciet &amp; krijtwit</button>
+    <button data-set="kleur" data-val="2">2 — petrolgroen &amp; zand</button>
+  </div>
+</div>
+
+<script>
+// structuur- en kleurtoggle
+document.querySelectorAll('.wf-toolbar button[data-set]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const set = btn.dataset.set, val = btn.dataset.val;
+    document.body.setAttribute('data-'+set, val);
+    document.querySelectorAll('.wf-toolbar button[data-set="'+set+'"]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// hero tabs (variant A)
+document.querySelectorAll('#heroTabs .hero-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('#heroTabs .hero-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const key = tab.dataset.tab;
+    document.querySelectorAll('#heroPanels .hero-tab-panel').forEach(p=>{
+      p.classList.toggle('active', p.dataset.panel === key);
+    });
+  });
+});
+// hero tabs (variant B)
+document.querySelectorAll('.hero-b .hero-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.hero-b .hero-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const key = tab.dataset.tab2;
+    document.querySelectorAll('#heroPanels2 .hero-tab-panel').forEach(p=>{
+      p.classList.toggle('active', p.dataset.panel2 === key);
+    });
+  });
+});
+
+// mobiel menu
+document.getElementById('menuToggle').addEventListener('click', ()=>{
+  document.getElementById('mainNav').classList.toggle('open');
+});
+
+// testimonial slider (scrollt per kaart, minimaal 3 tegelijk zichtbaar op desktop)
+(function(){
+  const track = document.getElementById('testiTrack');
+  const slidesWrap = document.getElementById('testiSlides');
+  function cardStep(){
+    const first = slidesWrap.children[0];
+    if(!first) return 0;
+    const gap = parseFloat(getComputedStyle(slidesWrap).columnGap || getComputedStyle(slidesWrap).gap || 20);
+    return first.getBoundingClientRect().width + gap;
+  }
+  document.getElementById('testiPrev').addEventListener('click', ()=>{
+    track.scrollBy({ left: -cardStep(), behavior:'smooth' });
+  });
+  document.getElementById('testiNext').addEventListener('click', ()=>{
+    track.scrollBy({ left: cardStep(), behavior:'smooth' });
+  });
+})();
+
+// kleur-swatches in legenda
+(function(){
+  const wrap = document.getElementById('swatchLegend');
+  const sets = [
+    ['Oranje (vast)', '#EB6708'],
+    ['Antraciet (voorstel 1)', '#201C1A'],
+    ['Krijtwit (voorstel 1)', '#F7F3EC'],
+    ['Petrolgroen (voorstel 2)', '#0F3D3A'],
+    ['Zand (voorstel 2)', '#F1E9DC'],
+  ];
+  sets.forEach(([label,hex])=>{
+    const s = document.createElement('span');
+    s.className = 'swatch';
+    s.innerHTML = '<i style="background:'+hex+'"></i>'+label+' · '+hex;
+    wrap.appendChild(s);
+  });
+})();
+</script>
+
+</body>
+</html>
