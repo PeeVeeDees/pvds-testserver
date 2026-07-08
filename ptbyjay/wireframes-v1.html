@@ -35,25 +35,32 @@
   --ph-icon: #A9A9A4;
 }
 
-/* ---------- kleurvoorstel 1: antraciet & krijtwit ---------- */
+/* ---------- kleurvoorstel 1: wit & antraciet (mono + oranje) ----------
+   Bewust geen crème/beige: zuiver wit als basis, antraciet-zwart als
+   tegenkleur, oranje als enige kleuraccent. Sportief, grafisch, denk
+   Nike Training: geen kleur die "toevallig AI-gegenereerd" aanvoelt. */
 body[data-kleur="1"]{
-  --dark: #201C1A;
-  --dark-soft: #35302C;
-  --bg: #F7F3EC;
-  --bg-alt: #EFE8DC;
-  --text: #201C1A;
-  --muted: #6B645C;
-  --line: #E2DACB;
+  --dark: #1A1A1A;
+  --dark-soft: #262626;
+  --bg: #FFFFFF;
+  --bg-alt: #EEF0F2;
+  --text: #1A1A1A;
+  --muted: #63676C;
+  --line: #E1E3E6;
 }
-/* ---------- kleurvoorstel 2: petrolgroen & zand ---------- */
+/* ---------- kleurvoorstel 2: wit & petrolgroen (met mintgroen tint) ----------
+   Ook hier: wit als basis, geen beige. De afwisselsecties krijgen een
+   duidelijk groene tint (geen grijze of zandkleurige tussenweg), zodat
+   het wit echt gebroken wordt door een andere kleur, niet door een
+   andere schakering wit. */
 body[data-kleur="2"]{
   --dark: #0F3D3A;
   --dark-soft: #16524D;
-  --bg: #F1E9DC;
-  --bg-alt: #E7DCC8;
-  --text: #17231F;
-  --muted: #4B5C57;
-  --line: #DCD0B8;
+  --bg: #FFFFFF;
+  --bg-alt: #E3F0E7;
+  --text: #16221E;
+  --muted: #57655D;
+  --line: #D6EADC;
 }
 
 *{ box-sizing: border-box; }
@@ -138,11 +145,13 @@ section{ padding: clamp(3rem,6vw,5.5rem) 0; }
 body{ padding-bottom:64px; }
 
 /* ============ HEADER ============ */
+/* Beeldvullend van links naar rechts, geen container-marge en geen lijn onder de header:
+   header loopt direct over in de hero-banner eronder. */
 .site-header{
   position:sticky; top:0; z-index:20; background:var(--bg);
-  border-bottom:1px solid var(--line);
 }
 .header-inner{
+  width:100%; padding-inline: clamp(1.25rem, 4vw, 3rem);
   min-height:84px; display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
 .logo-tekst{
@@ -196,10 +205,22 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 /* structuurvariant A: hero zoals mylife (beeld/video-band vol breed, tabs bovenop) */
 body[data-structuur="A"] .hero-a{ display:block; }
 body[data-structuur="A"] .hero-b{ display:none; }
-.hero-a .hero-media.full{ min-height:480px; border-radius:0 0 var(--radius) var(--radius); position:relative; }
+.hero-a .hero-media.full{
+  min-height:480px; border-radius:0 0 var(--radius) var(--radius); position:relative;
+  /* donkerder grijs dan de standaard placeholder: witte hero-tekst moet leesbaar zijn.
+     Zodra hier een echte foto komt, blijft dezelfde schaduw-overlay (::after) staan
+     zodat de tekst ook dan gegarandeerd leesbaar blijft. */
+  background: #4E4C48;
+  overflow:hidden;
+}
+.hero-a .hero-media.full::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(100deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.08) 75%);
+}
+.hero-a .hero-media.full svg{ opacity:.3; }
 .hero-a .hero-tabs{ position:relative; z-index:2; margin-top:-2.4rem; margin-bottom:1.8rem; }
 .hero-a .hero-overlay-copy{
-  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; justify-content:center;
   padding: 0 3rem; color:#fff;
 }
 .hero-a .hero-overlay-copy .eyebrow{ color:#FFD9A8; }
@@ -310,7 +331,7 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
-  <div class="container header-inner">
+  <div class="header-inner">
     <div class="logo-tekst">PTbyJay</div>
 
     <button class="menu-toggle" id="menuToggle" aria-expanded="false">Menu</button>
@@ -325,7 +346,7 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
           <a href="#">GYMbyJ</a>
         </div>
       </div>
-      <a href="#">Rooster GYMbyJ</a>
+      <a href="#">Rooster</a>
       <a href="#">Massages</a>
       <a href="#">Contact</a>
       <a href="#">Over mij</a>
@@ -614,8 +635,8 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
   </div>
   <div class="wf-group">
     Kleur:
-    <button data-set="kleur" data-val="1" class="active">1 — antraciet &amp; krijtwit</button>
-    <button data-set="kleur" data-val="2">2 — petrolgroen &amp; zand</button>
+    <button data-set="kleur" data-val="1" class="active">1 — wit &amp; antraciet</button>
+    <button data-set="kleur" data-val="2">2 — wit &amp; petrolgroen</button>
   </div>
 </div>
 
@@ -681,10 +702,10 @@ document.getElementById('menuToggle').addEventListener('click', ()=>{
   const wrap = document.getElementById('swatchLegend');
   const sets = [
     ['Oranje (vast)', '#EB6708'],
-    ['Antraciet (voorstel 1)', '#201C1A'],
-    ['Krijtwit (voorstel 1)', '#F7F3EC'],
+    ['Antraciet (voorstel 1)', '#1A1A1A'],
+    ['Wit + koel grijs (voorstel 1)', '#EEF0F2'],
     ['Petrolgroen (voorstel 2)', '#0F3D3A'],
-    ['Zand (voorstel 2)', '#F1E9DC'],
+    ['Mintgroen tint (voorstel 2)', '#E3F0E7'],
   ];
   sets.forEach(([label,hex])=>{
     const s = document.createElement('span');
