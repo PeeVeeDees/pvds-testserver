@@ -189,12 +189,26 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .hero{ position:relative; padding-top: clamp(3rem,7vw,5rem); overflow:visible; }
 .hero-grid{ display:grid; gap:2.5rem; align-items:center; }
 .hero-copy .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-top:1.4rem; }
-.hero-tabs{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+/* Let op: rechthoekig, geen pil. Pilvorm (.btn) is gereserveerd voor echte
+   call-to-action-knoppen; deze vier zijn wisselknoppen/tabs, geen CTA's. */
+.hero-tabs{ display:flex; gap:0; flex-wrap:wrap; margin-bottom:1.6rem; }
 .hero-tab{
-  background:var(--bg-alt); border:1px solid var(--line); border-radius:999px;
-  padding:.55rem 1.1rem; font-weight:600; font-size:.9rem; color:var(--muted);
+  display:flex; align-items:center; gap:.6rem;
+  background:var(--bg-alt); border:1px solid var(--line); border-left:none;
+  border-radius:0; position:relative;
+  padding:.9rem 1.2rem; font-weight:600; font-size:.9rem; color:var(--muted);
+  flex:1 1 0;
 }
-.hero-tab.active{ background:var(--dark); color:#fff; border-color:var(--dark); }
+.hero-tab:first-child{ border-left:1px solid var(--line); border-top-left-radius:var(--radius-sm); }
+.hero-tab:last-child{ border-top-right-radius:var(--radius-sm); }
+.hero-tab svg{ width:20px; height:20px; flex:none; opacity:.8; }
+.hero-tab.active{ background:#fff; color:var(--dark); }
+.hero-tab.active::after{
+  content:""; position:absolute; left:50%; bottom:-8px; translate:-50% 0;
+  width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent;
+  border-top:8px solid #fff;
+}
+@media (max-width:700px){ .hero-tab span{ display:none; } .hero-tab{ justify-content:center; } }
 .hero-tab-panels{ margin-top:.4rem; }
 .hero-tab-panel{ display:none; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem 1.3rem; }
 .hero-tab-panel.active{ display:block; }
@@ -239,21 +253,53 @@ body[data-structuur="B"] .hero-b{ display:block; }
 
 /* ============ LESSEN ============ */
 .section-head{ max-width:640px; margin-bottom:2.2rem; }
-.lessen-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--gap); }
-body[data-structuur="B"] .lessen-grid{
-  grid-template-columns: repeat(4, minmax(260px,1fr)); overflow-x:auto; padding-bottom:.5rem;
-  scroll-snap-type:x mandatory;
-}
-body[data-structuur="B"] .les-card{ scroll-snap-align:start; }
-@media (max-width:1000px){ .lessen-grid{ grid-template-columns:repeat(2,1fr); } }
-@media (max-width:600px){ .lessen-grid{ grid-template-columns:1fr; } }
+
+/* basisopmaak (fallback zonder JS): eenvoudige grid */
+.lessen-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
 .les-card{
   background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-  padding:1.4rem; display:flex; flex-direction:column; gap:.8rem;
+  padding:1.6rem; display:flex; flex-direction:column; gap:.8rem;
 }
-.les-card .ph{ min-height:150px; }
-.les-card p{ color:var(--muted); font-size:.94rem; flex-grow:1; }
+.les-card .ph{ min-height:220px; }
+.les-card .les-copy{ display:contents; } /* h3/p/btn-row worden directe flex-items van .les-card */
+.les-card p{ color:var(--muted); font-size:.96rem; flex-grow:1; }
 .les-card .btn-row{ display:flex; gap:.6rem; flex-wrap:wrap; }
+@media (max-width:700px){ .lessen-grid{ grid-template-columns:1fr; } }
+
+/* ---------- structuur A: mylife-achtig, groot en alternerend, geen grid van blokjes ---------- */
+body[data-structuur="A"] .lessen-grid{
+  display:flex; flex-direction:column; gap: clamp(2.5rem, 6vw, 4rem);
+}
+body[data-structuur="A"] .les-card{
+  display:flex; flex-direction:row; align-items:center; gap: clamp(1.5rem, 4vw, 3rem);
+  background:none; border:none; padding:0; border-radius:0;
+}
+body[data-structuur="A"] .les-card:nth-child(even){ flex-direction:row-reverse; }
+body[data-structuur="A"] .les-card .ph{ flex:0 0 46%; min-height:360px; }
+body[data-structuur="A"] .les-card .les-copy{ display:block; flex:1; }
+body[data-structuur="A"] .les-card .les-copy h3{
+  font-size: clamp(1.5rem, 2.6vw, 2rem); position:relative; padding-bottom:1rem; margin-bottom:1rem;
+}
+body[data-structuur="A"] .les-card .les-copy h3::after{
+  content:""; position:absolute; left:0; bottom:0; width:56px; height:4px;
+  background:var(--orange); border-radius:2px;
+}
+body[data-structuur="A"] .les-card .les-copy p{ font-size:1.05rem; max-width:52ch; }
+@media (max-width:780px){
+  body[data-structuur="A"] .les-card,
+  body[data-structuur="A"] .les-card:nth-child(even){ flex-direction:column; align-items:stretch; }
+  body[data-structuur="A"] .les-card .ph{ flex:none; width:100%; min-height:240px; }
+}
+
+/* ---------- structuur B: eigen vrijheid, ruime 2x2-grid (geen 4-op-een-rij meer) ---------- */
+body[data-structuur="B"] .lessen-grid{
+  grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem);
+  overflow-x:visible; scroll-snap-type:none;
+}
+body[data-structuur="B"] .les-card{ scroll-snap-align:none; padding:2rem; }
+body[data-structuur="B"] .les-card .ph{ min-height:240px; }
+body[data-structuur="B"] .les-card .les-copy h3{ font-size:1.3rem; }
+@media (max-width:640px){ body[data-structuur="B"] .lessen-grid{ grid-template-columns:1fr; } }
 
 /* ============ TESTIMONIALS ============ */
 .testi-wrap{ position:relative; }
@@ -377,10 +423,10 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
     </div>
 
     <div class="hero-tabs" id="heroTabs">
-      <button class="hero-tab active" data-tab="pt">Personal training</button>
-      <button class="hero-tab" data-tab="boks">Groepsles boksen</button>
-      <button class="hero-tab" data-tab="kind">Kinderles</button>
-      <button class="hero-tab" data-tab="pp">Parent &amp; Punch</button>
+      <button class="hero-tab active" data-tab="pt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="3.2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Personal training</span></button>
+      <button class="hero-tab" data-tab="boks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M8 12h8M12 8v8"/></svg><span>Groepsles boksen</span></button>
+      <button class="hero-tab" data-tab="kind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.6"/><path d="M6 21c0-4 2.6-6.5 6-6.5s6 2.5 6 6.5"/></svg><span>Kinderles</span></button>
+      <button class="hero-tab" data-tab="pp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg><span>Parent &amp; Punch</span></button>
     </div>
     <div class="hero-tab-panels" id="heroPanels">
       <div class="hero-tab-panel active" data-panel="pt">
@@ -454,41 +500,49 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
     <div class="lessen-grid">
       <article class="les-card" id="les-pt">
         <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="3.2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
-        <h3>Personal training</h3>
-        <p>Tijdens een PT-sessie begeleid ik je naar een hoger niveau. Dit kan door middel van pads, krachttraining en het aanpassen van je leefstijl. Je zult merken dat ik aandacht voor detail heb, maar ook jou als individu centraal stel. Bij mij staan veiligheid, plezier en resultaat voorop!</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-sm" href="#">Plan je gratis intake</a>
-          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        <div class="les-copy">
+          <h3>Personal training</h3>
+          <p>Tijdens een PT-sessie begeleid ik je naar een hoger niveau. Dit kan door middel van pads, krachttraining en het aanpassen van je leefstijl. Je zult merken dat ik aandacht voor detail heb, maar ook jou als individu centraal stel. Bij mij staan veiligheid, plezier en resultaat voorop!</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="#">Plan je gratis intake</a>
+            <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+          </div>
         </div>
       </article>
 
       <article class="les-card" id="les-boks">
         <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M8 12h8M12 8v8"/></svg></div>
-        <h3>Groepsles boksen</h3>
-        <p>Met een lidmaatschap zal ik mijn best doen om jou de technieken bij te brengen. Dit omvat speelse oefeningen die tegelijkertijd ook behoorlijk intensief zijn. Voor mij is het essentieel dat er tijdens de lessen hard gewerkt wordt, maar af en toe een luchtige opmerking tussendoor is zeker te waarderen! Het is voor mij essentieel dat iedereen aan zijn eigen verbetering werkt, zichzelf kan verdedigen en vitaal blijft of wordt.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-sm" href="#">Boek een proefles</a>
-          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        <div class="les-copy">
+          <h3>Groepsles boksen</h3>
+          <p>Met een lidmaatschap zal ik mijn best doen om jou de technieken bij te brengen. Dit omvat speelse oefeningen die tegelijkertijd ook behoorlijk intensief zijn. Voor mij is het essentieel dat er tijdens de lessen hard gewerkt wordt, maar af en toe een luchtige opmerking tussendoor is zeker te waarderen! Het is voor mij essentieel dat iedereen aan zijn eigen verbetering werkt, zichzelf kan verdedigen en vitaal blijft of wordt.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="#">Boek een proefles</a>
+            <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+          </div>
         </div>
       </article>
 
       <article class="les-card" id="les-kind">
         <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.6"/><path d="M6 21c0-4 2.6-6.5 6-6.5s6 2.5 6 6.5"/></svg></div>
-        <h3>Kinderles</h3>
-        <p>Tijdens de kinderles starten we met een warming-up in de vorm van een spelletje dat trainingselementen bevat. De technieken worden gepresenteerd binnen de belevingswereld van het kind. Indien de tijd het toelaat, sluiten we af met een spelletje. De nadruk tijdens de les ligt op het aanleren van één of twee technieken.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-sm" href="#">Boek de proefles voor je kind</a>
-          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        <div class="les-copy">
+          <h3>Kinderles</h3>
+          <p>Tijdens de kinderles starten we met een warming-up in de vorm van een spelletje dat trainingselementen bevat. De technieken worden gepresenteerd binnen de belevingswereld van het kind. Indien de tijd het toelaat, sluiten we af met een spelletje. De nadruk tijdens de les ligt op het aanleren van één of twee technieken.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="#">Boek de proefles voor je kind</a>
+            <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+          </div>
         </div>
       </article>
 
       <article class="les-card" id="les-pp">
         <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg></div>
-        <h3>Parent &amp; Punch</h3>
-        <p>Ouder en kind boks-lessenreeks. In deze lessen wordt het kickboksen gebruikt om ouders en kinderen met elkaar te verbinden. We doen oefeningen op een speelse manier die voor de kinderen leuk en uitdagend zijn. De kinderen leren zichzelf te verdedigen, weerbaar te worden en grenzen aan te geven.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary btn-sm" href="#">Boek samen een proefles</a>
-          <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+        <div class="les-copy">
+          <h3>Parent &amp; Punch</h3>
+          <p>Ouder en kind boks-lessenreeks. In deze lessen wordt het kickboksen gebruikt om ouders en kinderen met elkaar te verbinden. We doen oefeningen op een speelse manier die voor de kinderen leuk en uitdagend zijn. De kinderen leren zichzelf te verdedigen, weerbaar te worden en grenzen aan te geven.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-sm" href="#">Boek samen een proefles</a>
+            <a class="btn btn-ghost btn-sm" href="#">Meer informatie</a>
+          </div>
         </div>
       </article>
     </div>
