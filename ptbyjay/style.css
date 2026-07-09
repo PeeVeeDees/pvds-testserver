@@ -334,4 +334,7 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
 }
 .footer-bottom a{ text-decoration:underline; }
 .footer-legal{ display:flex; gap:1.2rem; }
-.hours-row{ display:flex; justify-content:space-between; gap:1rem; }
+.footer-grid ul.hours-list{
+  display:grid; grid-template-columns:max-content max-content; column-gap:1.5rem; row-gap:.5rem;
+}
+.hours-row{ display:contents; }
