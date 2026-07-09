@@ -324,13 +324,13 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
 @media (max-width:560px){ .footer-grid{ grid-template-columns:1fr; } }
 .footer-grid h4{
   font-family:'Barlow Semi Condensed',sans-serif; font-size:1.05rem; font-weight:700;
-  color:#fff; margin-bottom:.9rem;
+  color:#fff; margin:0 0 .9rem;
 }
 .footer-grid p, .footer-grid li{ color:#FFFFFF; font-size:.92rem; }
 .footer-grid ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.5rem; }
-.footer-legal a{ display:block; margin-top:.5rem; font-size:.85rem; color:#FFFFFF; text-decoration:underline; }
 .footer-bottom{
   border-top:1px solid rgba(255,255,255,.12); padding:1.1rem 0; font-size:.8rem; color:#FFFFFF;
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
 }
+.footer-bottom a{ text-decoration:underline; }
 .hours-row{ display:flex; justify-content:space-between; gap:1rem; }
