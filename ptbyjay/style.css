@@ -82,6 +82,7 @@ button{ font-family:inherit; cursor:pointer; }
   font-size:.78rem; color:var(--orange); margin-bottom:.6rem;
 }
 section{ padding: clamp(3rem,6vw,5.5rem) 0; }
+#content{ padding-top:0; }
 
 /* ---------- placeholders ---------- */
 .ph{
@@ -165,7 +166,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 }
 
 /* ============ HERO ============ */
-.hero{ position:relative; padding-top: clamp(3rem,7vw,5rem); overflow:visible; }
+.hero{ position:relative; padding-top:0; overflow:visible; }
 .hero-grid{ display:grid; gap:2.5rem; align-items:center; }
 .hero-copy .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-top:1.4rem; }
 /* Let op: rechthoekig, geen pil. Pilvorm (.btn) is gereserveerd voor echte
