@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parent &amp; Punch — PTbyJay</title>
+<title>Blog — PTbyJay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -41,20 +41,15 @@
   </div>
 </header>
 
-<!-- ============ LES-CONTENT ============ -->
-<section id="content">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Onze lessen</span>
-      <h1>Parent &amp; Punch</h1>
-    </div>
-    <div class="ph" style="min-height:340px; margin-bottom:1.5rem;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg>
-    </div>
-    <p style="color:var(--muted); font-size:1.05rem; max-width:60ch;">Ouder en kind boks-lessenreeks. In deze lessen wordt het kickboksen gebruikt om ouders en kinderen met elkaar te verbinden. We doen oefeningen op een speelse manier die voor de kinderen leuk en uitdagend zijn. De kinderen leren zichzelf te verdedigen, weerbaar te worden en grenzen aan te geven.</p>
-    <div class="btn-row">
-      <a class="btn btn-primary" href="#">Boek samen een proefles</a>
-      <a class="btn btn-ghost" href="#">Meer informatie</a>
+<!-- ============ HERO A (alleen kopje, verder kaal) ============ -->
+<section class="hero hero-a">
+  <div class="hero-media full ph">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+    <div class="hero-overlay-copy">
+      <div class="container">
+        <span class="eyebrow">Nieuws &amp; inzichten</span>
+        <h1>Blog</h1>
+      </div>
     </div>
   </div>
 </section>
@@ -106,7 +101,26 @@
   </div>
 </footer>
 
+<!-- ============ TOOLBAR (alleen kleurtoggle) ============ -->
+<div class="wf-toolbar">
+  <strong>Wireframe #559 PTbyJay — Blog</strong>
+  <div class="wf-group">
+    Kleur:
+    <button data-set="kleur" data-val="1" class="active">1 — wit &amp; staalblauw</button>
+    <button data-set="kleur" data-val="2">2 — wit &amp; petrolgroen</button>
+  </div>
+</div>
+
 <script>
+document.querySelectorAll('.wf-toolbar button[data-set]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const set = btn.dataset.set, val = btn.dataset.val;
+    document.body.setAttribute('data-'+set, val);
+    document.querySelectorAll('.wf-toolbar button[data-set="'+set+'"]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
 document.getElementById('menuToggle').addEventListener('click', ()=>{
   document.getElementById('mainNav').classList.toggle('open');
 });
