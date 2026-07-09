@@ -361,16 +361,6 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
 }
 .hours-row{ display:flex; justify-content:space-between; gap:1rem; }
 
-/* ============ LEGENDA ============ */
-.legenda{ background:#fff; border-top:4px solid var(--orange); }
-.legenda .container{ padding: 2.2rem 0 3rem; }
-.legenda h3{ margin-bottom:1rem; }
-.legenda ol{ padding-left:1.2rem; display:grid; gap:.6rem; }
-.legenda ol li::marker{ font-weight:700; color:var(--orange); }
-.swatches{ display:flex; gap:.8rem; margin:1rem 0 1.6rem; flex-wrap:wrap; }
-.swatch{ display:flex; align-items:center; gap:.5rem; font-size:.85rem; }
-.swatch i{ width:22px; height:22px; border-radius:6px; display:inline-block; border:1px solid rgba(0,0,0,.1); }
-
 </style>
 </head>
 <body data-structuur="A" data-kleur="1">
@@ -663,22 +653,6 @@ footer.site-footer{ background:var(--dark-soft); color:#EDE8DE; margin-top:2rem;
   </div>
 </footer>
 
-<!-- ============ LEGENDA ============ -->
-<section class="legenda">
-  <div class="container">
-    <h3>Legenda &amp; open punten</h3>
-    <div class="swatches" id="swatchLegend"></div>
-    <ol>
-      <li><strong>Pin 1</strong> — "Word lid"-knop naast de proefles-pil: nog niet besloten.</li>
-      <li><strong>Pin 2</strong> — Vier hero-wisselknoppen, geïnspireerd op mylife.nl, eigen invulling.</li>
-      <li><strong>Pin 3</strong> — StoryBrand-copy: Jay als gids, bezoeker als held. Kaartteksten volgen in fase 6, knoppen zijn al herschreven.</li>
-      <li><strong>Pin 4</strong> — Tweede (ghost) knop per lessenkaart: optioneel, nog geen besluit.</li>
-      <li><strong>Pin 5</strong> — Hoofd-CTA herschreven, "ter waarde van €9,99" bewust weggelaten.</li>
-      <li><strong>Pin 6</strong> — Naamgeving overal PTbyJay, ook in de footer. Mondelinge bevestiging met Jay staat nog gepland, zie NU.md #559.</li>
-    </ol>
-  </div>
-</section>
-
 <!-- ============ TOOLBAR ============ -->
 <div class="wf-toolbar">
   <strong>Wireframe #559 PTbyJay</strong>
@@ -751,23 +725,6 @@ document.getElementById('menuToggle').addEventListener('click', ()=>{
   });
 })();
 
-// kleur-swatches in legenda
-(function(){
-  const wrap = document.getElementById('swatchLegend');
-  const sets = [
-    ['Oranje (vast)', '#EB6708'],
-    ['Antraciet (voorstel 1)', '#1A1A1A'],
-    ['Wit + koel grijs (voorstel 1)', '#EEF0F2'],
-    ['Petrolgroen (voorstel 2)', '#0F3D3A'],
-    ['Mintgroen tint (voorstel 2)', '#E3F0E7'],
-  ];
-  sets.forEach(([label,hex])=>{
-    const s = document.createElement('span');
-    s.className = 'swatch';
-    s.innerHTML = '<i style="background:'+hex+'"></i>'+label+' · '+hex;
-    wrap.appendChild(s);
-  });
-})();
 </script>
 
 </body>
