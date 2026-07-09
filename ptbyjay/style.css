@@ -94,16 +94,6 @@ section{ padding: clamp(3rem,6vw,5.5rem) 0; }
 .ph svg{ width:38px; height:38px; opacity:.7; }
 .ph-round{ border-radius:50%; }
 
-/* ---------- pin-annotaties ---------- */
-.pin{
-  position:absolute; width:26px; height:26px; border-radius:50%;
-  background:#FFD23F; color:#3A2E00; font-weight:700; font-size:.8rem;
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 0 0 3px #fff, 0 2px 6px rgba(0,0,0,.25);
-  cursor:help; z-index:5; font-family:'Barlow', sans-serif;
-}
-.pin-anchor{ position:relative; }
-
 /* ---------- knoppen ---------- */
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
@@ -219,7 +209,7 @@ body[data-structuur="A"] .hero-b{ display:none; }
 .hero-a .hero-tabs{ position:relative; z-index:2; margin-top:-2.4rem; margin-bottom:1.8rem; }
 .hero-a .hero-overlay-copy{
   position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; justify-content:center;
-  padding: 0 3rem; color:#fff;
+  color:#fff;
 }
 .hero-a .hero-overlay-copy .eyebrow{ color:#FFD9A8; }
 .hero-a .hero-overlay-copy h1{ color:#fff; }
@@ -232,7 +222,6 @@ body[data-structuur="B"] .hero-b{ display:block; }
 .hero-b .hero-media .ph{ border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; min-height:460px; }
 @media (max-width:940px){
   .hero-b .hero-grid{ grid-template-columns:1fr; }
-  .hero-a .hero-overlay-copy{ padding:0 1.4rem; }
 }
 
 /* ============ LESSEN ============ */
