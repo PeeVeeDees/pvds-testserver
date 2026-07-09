@@ -275,6 +275,19 @@ body[data-structuur="B"] .les-card .ph{ min-height:240px; }
 body[data-structuur="B"] .les-card .les-copy h3{ font-size:1.3rem; }
 @media (max-width:640px){ body[data-structuur="B"] .lessen-grid{ grid-template-columns:1fr; } }
 
+/* ============ OVER MIJ — LOCATIES ============ */
+.locaties-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
+.loc-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:1.6rem; display:flex; flex-direction:column; gap:.4rem;
+}
+.loc-card .ph{ min-height:220px; margin-bottom:.6rem; }
+.loc-card h3{ margin-bottom:0; }
+.loc-card .loc-sub{ color:var(--orange); font-weight:600; font-size:.85rem; }
+.loc-card .loc-adres{ color:var(--muted); font-size:.95rem; margin-bottom:.6rem; }
+.loc-card .btn{ align-self:flex-start; }
+@media (max-width:700px){ .locaties-grid{ grid-template-columns:1fr; } }
+
 /* ============ TESTIMONIALS ============ */
 .testi-wrap{ position:relative; }
 .testi-track{
