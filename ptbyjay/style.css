@@ -351,3 +351,87 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
   display:grid; grid-template-columns:max-content max-content; column-gap:1.5rem; row-gap:.5rem;
 }
 .hours-row{ display:contents; }
+
+/* ============ CONTACTPAGINA ============ */
+.page-kop{ padding-bottom:0; }
+.page-kop h1{ max-width:22ch; }
+.page-kop p{ color:var(--muted); max-width:56ch; font-size:1.05rem; }
+
+.contact-grid{ display:grid; gap:2.5rem; grid-template-columns:1.5fr 1fr; align-items:start; }
+@media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
+
+.contact-form-card{
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding: clamp(1.8rem,3vw,2.6rem);
+}
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+.form-row.full{ grid-template-columns:1fr; }
+@media (max-width:560px){ .form-row{ grid-template-columns:1fr; } }
+.form-field label{ display:block; font-weight:600; font-size:.88rem; margin-bottom:.4rem; }
+.form-field input, .form-field textarea{
+  width:100%; border:1px solid var(--line); border-radius:var(--radius-sm);
+  padding:.75rem .9rem; font-family:'Barlow',sans-serif; font-size:.96rem;
+  background:var(--bg-alt); color:var(--text);
+}
+.form-field textarea{ min-height:130px; resize:vertical; }
+.form-actions{ margin-top:.4rem; }
+
+/* sidebar met direct-contact en socials: donker kaartje naast het formulier */
+.contact-side{ display:flex; flex-direction:column; gap:1.4rem; }
+.contact-info-card{ background:var(--dark); color:#fff; border-radius:var(--radius); padding:1.8rem; }
+.contact-info-card h4{ font-family:'Barlow Semi Condensed',sans-serif; font-size:1.05rem; margin:0 0 1.1rem; }
+.mail-line{ display:flex; align-items:center; gap:.6rem; font-weight:600; margin-bottom:1.5rem; word-break:break-all; }
+.mail-line svg{ flex:none; width:20px; height:20px; opacity:.85; }
+.social-row{ display:flex; gap:.7rem; }
+.social-icon{
+  width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.28);
+  display:flex; align-items:center; justify-content:center; transition:background .15s,border-color .15s;
+}
+.social-icon svg{ width:19px; height:19px; }
+.social-icon:hover{ background:var(--orange); border-color:var(--orange); }
+
+/* ---------- locaties op de contactpagina: brede, alternerende blokken met kaartpreview ---------- */
+.contact-locaties-grid{ display:flex; flex-direction:column; gap: clamp(2.2rem, 5vw, 3.2rem); }
+.locatie-card{ display:flex; align-items:center; gap: clamp(1.5rem, 4vw, 3rem); }
+.locatie-card:nth-child(even){ flex-direction:row-reverse; }
+.locatie-card .kaart-ph{ flex:0 0 46%; min-height:280px; }
+.locatie-card .locatie-copy{ flex:1; }
+@media (max-width:780px){
+  .locatie-card{ flex-direction:column !important; align-items:stretch; }
+  .locatie-card .kaart-ph{ flex:none; width:100%; min-height:220px; }
+}
+
+.locatie-copy h3{ position:relative; padding-bottom:.9rem; margin-bottom:.9rem; }
+.locatie-copy h3::after{
+  content:""; position:absolute; left:0; bottom:0; width:48px; height:4px;
+  background:var(--orange); border-radius:2px;
+}
+.locatie-copy .venue{ font-size:.86rem; color:var(--muted); font-weight:600; margin-bottom:.6rem; }
+.locatie-copy .adres-block{ display:flex; flex-direction:column; gap:.1rem; color:var(--muted); margin-bottom:1.2rem; }
+.locatie-copy .adres-block span:first-child{ color:var(--text); font-weight:600; }
+
+/* kaartpreview: bewust zwart-wit, geen foto (kaart-component-protocol.md volgt in productie) */
+.kaart-ph{
+  position:relative; overflow:hidden; border-radius:var(--radius);
+  background:
+    linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px) 0 0/26px 26px,
+    linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px) 0 0/26px 26px,
+    var(--ph-bg);
+}
+.kaart-ph::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(115deg, transparent 46%, rgba(0,0,0,.09) 46%, rgba(0,0,0,.09) 49%, transparent 49%),
+    linear-gradient(24deg, transparent 63%, rgba(0,0,0,.07) 63%, rgba(0,0,0,.07) 65%, transparent 65%);
+}
+.kaart-marker{
+  position:absolute; top:50%; left:50%; translate:-50% -100%;
+  width:34px; height:34px; border-radius:50% 50% 50% 0; background:#1A1A1A;
+  transform:rotate(-45deg); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 10px rgba(0,0,0,.25);
+}
+.kaart-marker span{ transform:rotate(45deg); color:#fff; font-family:'Barlow Semi Condensed',sans-serif; font-weight:800; font-size:1rem; }
+.kaart-label{
+  position:absolute; bottom:12px; left:12px; background:rgba(255,255,255,.94); border-radius:999px;
+  padding:.32rem .75rem; font-size:.72rem; font-weight:600; color:var(--muted); letter-spacing:.02em;
+}
