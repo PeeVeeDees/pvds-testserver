@@ -140,9 +140,12 @@ body{ padding-bottom:64px; }
 }
 nav.main-nav{ display:flex; gap:1.6rem; align-items:center; }
 nav.main-nav a{ font-weight:600; font-size:.96rem; }
-.has-dropdown{ position:relative; }
+/* top:100% (geen gat) i.p.v. top:130%: bij een gat tussen trigger en dropdown
+   verliest de muis de :hover-status zodra hij het gat oversteekt, waardoor het
+   menu dichtklapt vóórdat je een submenu-item kunt raken. */
+.has-dropdown{ position:relative; padding-bottom:.6rem; margin-bottom:-.6rem; }
 .dropdown{
-  position:absolute; top:130%; left:0; background:#fff; border:1px solid var(--line);
+  position:absolute; top:100%; left:0; background:#fff; border:1px solid var(--line);
   border-radius:var(--radius-sm); padding:.5rem; min-width:190px; display:none;
   box-shadow:0 12px 24px rgba(0,0,0,.08);
 }
@@ -161,6 +164,9 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
     border-bottom:1px solid var(--line); display:none; gap:.8rem;
   }
   nav.main-nav.open{ display:flex; }
+  /* padding-bottom/margin-bottom op .has-dropdown is alleen de hover-brug voor desktop:
+     op mobiel staat het submenu altijd open (geen hover), dus hier weer neutraliseren. */
+  .has-dropdown{ padding-bottom:0; margin-bottom:0; }
   .dropdown{ position:static; display:block; box-shadow:none; border:none; padding:.2rem 0 0 .6rem; }
   .menu-toggle{ display:inline-block; }
 }
