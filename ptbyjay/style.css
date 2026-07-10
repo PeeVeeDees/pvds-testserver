@@ -151,8 +151,6 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 
 /* ============ HERO ============ */
 .hero{ position:relative; padding-top:0; overflow:visible; }
-.hero-grid{ display:grid; gap:2.5rem; align-items:center; }
-.hero-copy .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-top:1.4rem; }
 /* Let op: rechthoekig, geen pil. Pilvorm (.btn) is gereserveerd voor echte
    call-to-action-knoppen; deze vier zijn wisselknoppen/tabs, geen CTA's. */
 .hero-tabs{ display:flex; gap:0; flex-wrap:wrap; margin-bottom:1.6rem; }
@@ -175,9 +173,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 @media (max-width:700px){ .hero-tab span{ display:none; } .hero-tab{ justify-content:center; } }
 .hero-media .ph{ min-height:420px; }
 
-/* structuurvariant A: hero zoals mylife (beeld/video-band vol breed, tabs bovenop) */
-body[data-structuur="A"] .hero-a{ display:block; }
-body[data-structuur="A"] .hero-b{ display:none; }
+/* hero: beeld/video-band vol breed, tabs bovenop */
 .hero-a .hero-media.full{
   min-height: clamp(460px, 60vh, 640px); border-radius:0; position:relative;
   /* donkerder grijs dan de standaard placeholder: witte hero-tekst moet leesbaar zijn.
@@ -200,64 +196,36 @@ body[data-structuur="A"] .hero-b{ display:none; }
 .hero-a .hero-overlay-copy h1{ color:#fff; }
 .hero-a .hero-overlay-copy p{ color:#EFE9DD; max-width:34ch; }
 
-/* structuurvariant B: asymmetrisch, tekst/beeld naast elkaar */
-body[data-structuur="B"] .hero-a{ display:none; }
-body[data-structuur="B"] .hero-b{ display:block; }
-.hero-b .hero-grid{ grid-template-columns: 1.05fr .95fr; }
-.hero-b .hero-media .ph{ border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%; min-height:460px; }
-@media (max-width:940px){
-  .hero-b .hero-grid{ grid-template-columns:1fr; }
-}
-
 /* ============ LESSEN ============ */
 .section-head{ max-width:640px; margin-bottom:2.2rem; }
 
-/* basisopmaak (fallback zonder JS): eenvoudige grid */
-.lessen-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
-.les-card{
-  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-  padding:1.6rem; display:flex; flex-direction:column; gap:.8rem;
-}
-.les-card .ph{ min-height:220px; }
-.les-card .les-copy{ display:contents; } /* h3/p/btn-row worden directe flex-items van .les-card */
 .les-card p{ color:var(--muted); font-size:.96rem; flex-grow:1; }
 .les-card .btn-row{ display:flex; gap:.6rem; flex-wrap:wrap; }
-@media (max-width:700px){ .lessen-grid{ grid-template-columns:1fr; } }
 
-/* ---------- structuur A: mylife-achtig, groot en alternerend, geen grid van blokjes ---------- */
-body[data-structuur="A"] .lessen-grid{
+/* ---------- groot en alternerend, geen grid van blokjes ---------- */
+.lessen-grid{
   display:flex; flex-direction:column; gap: clamp(2.5rem, 6vw, 4rem);
 }
-body[data-structuur="A"] .les-card{
+.les-card{
   display:flex; flex-direction:row; align-items:center; gap: clamp(1.5rem, 4vw, 3rem);
   background:none; border:none; padding:0; border-radius:0;
 }
-body[data-structuur="A"] .les-card:nth-child(even){ flex-direction:row-reverse; }
-body[data-structuur="A"] .les-card .ph{ flex:0 0 46%; min-height:360px; }
-body[data-structuur="A"] .les-card .les-copy{ display:block; flex:1; }
-body[data-structuur="A"] .les-card .les-copy h3{
+.les-card:nth-child(even){ flex-direction:row-reverse; }
+.les-card .ph{ flex:0 0 46%; min-height:360px; }
+.les-card .les-copy{ display:block; flex:1; }
+.les-card .les-copy h3{
   font-size: clamp(1.5rem, 2.6vw, 2rem); position:relative; padding-bottom:1rem; margin-bottom:1rem;
 }
-body[data-structuur="A"] .les-card .les-copy h3::after{
+.les-card .les-copy h3::after{
   content:""; position:absolute; left:0; bottom:0; width:56px; height:4px;
   background:var(--orange); border-radius:2px;
 }
-body[data-structuur="A"] .les-card .les-copy p{ font-size:1.05rem; max-width:52ch; }
+.les-card .les-copy p{ font-size:1.05rem; max-width:52ch; }
 @media (max-width:780px){
-  body[data-structuur="A"] .les-card,
-  body[data-structuur="A"] .les-card:nth-child(even){ flex-direction:column; align-items:stretch; }
-  body[data-structuur="A"] .les-card .ph{ flex:none; width:100%; min-height:240px; }
+  .les-card,
+  .les-card:nth-child(even){ flex-direction:column; align-items:stretch; }
+  .les-card .ph{ flex:none; width:100%; min-height:240px; }
 }
-
-/* ---------- structuur B: eigen vrijheid, ruime 2x2-grid (geen 4-op-een-rij meer) ---------- */
-body[data-structuur="B"] .lessen-grid{
-  grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem);
-  overflow-x:visible; scroll-snap-type:none;
-}
-body[data-structuur="B"] .les-card{ scroll-snap-align:none; padding:2rem; }
-body[data-structuur="B"] .les-card .ph{ min-height:240px; }
-body[data-structuur="B"] .les-card .les-copy h3{ font-size:1.3rem; }
-@media (max-width:640px){ body[data-structuur="B"] .lessen-grid{ grid-template-columns:1fr; } }
 
 /* ============ OVER MIJ — LOCATIES ============ */
 .locaties-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
@@ -307,9 +275,6 @@ body[data-structuur="B"] .les-card .les-copy h3{ font-size:1.3rem; }
 .cta-band .eyebrow{ color:#FFD9A8; }
 .cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
 .cta-inner p{ color:#E7E2D8; max-width:46ch; margin:0; }
-body[data-structuur="B"] .cta-inner{ display:grid; grid-template-columns:1.2fr .8fr; align-items:center; }
-body[data-structuur="B"] .cta-inner .ph{ min-height:180px; background:rgba(255,255,255,.08); }
-body[data-structuur="B"] .cta-inner .ph svg{ opacity:.5; filter:invert(1); }
 
 /* ============ FOOTER (vast, geen A/B-verschil) ============ */
 footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem; }

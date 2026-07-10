@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-structuur="A" data-kleur="1">
+<body>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -205,21 +205,12 @@
   </div>
 </footer>
 
-<!-- ============ TOOLBAR (alleen kleurtoggle) ============ -->
+<!-- ============ TOOLBAR ============ -->
 <div class="wf-toolbar">
   <strong>Wireframe #559 PTbyJay, Contact</strong>
 </div>
 
 <script>
-document.querySelectorAll('.wf-toolbar button[data-set]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const set = btn.dataset.set, val = btn.dataset.val;
-    document.body.setAttribute('data-'+set, val);
-    document.querySelectorAll('.wf-toolbar button[data-set="'+set+'"]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-
 document.getElementById('menuToggle').addEventListener('click', ()=>{
   document.getElementById('mainNav').classList.toggle('open');
 });

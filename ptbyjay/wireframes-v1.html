@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-structuur="A" data-kleur="1">
+<body>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
@@ -41,7 +41,7 @@
   </div>
 </header>
 
-<!-- ============ HERO A (mylife-achtig, breed beeld + tabs erbovenop) ============ -->
+<!-- ============ HERO (breed beeld + tabs erbovenop) ============ -->
 <section class="hero hero-a">
   <div class="hero-media full ph">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
@@ -64,36 +64,6 @@
       <a class="hero-tab" href="groepsles-boksen.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M8 12h8M12 8v8"/></svg><span>Groepsles boksen</span></a>
       <a class="hero-tab" href="kinderles.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.6"/><path d="M6 21c0-4 2.6-6.5 6-6.5s6 2.5 6 6.5"/></svg><span>Kinderles</span></a>
       <a class="hero-tab" href="parent-punch.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg><span>Parent &amp; Punch</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ HERO B (eigen vrijheid, asymmetrisch) ============ -->
-<section class="hero hero-b">
-  <div class="container">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Personal training &amp; boksen · Berkel en Rodenrijs &amp; Bergschenhoek</span>
-        <h1>Jij zet de stap.<br>Ik loop met je mee.</h1>
-        <p>Kracht, conditie en zelfvertrouwen opbouw je niet alleen. Met de juiste begeleiding zet je sneller en veiliger stappen, of je nu net begint of al jaren sport.</p>
-
-        <div class="hero-tabs">
-          <a class="hero-tab active" href="personal-training.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="7" r="3.2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Personal training</span></a>
-          <a class="hero-tab" href="groepsles-boksen.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M8 12h8M12 8v8"/></svg><span>Groepsles boksen</span></a>
-          <a class="hero-tab" href="kinderles.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.6"/><path d="M6 21c0-4 2.6-6.5 6-6.5s6 2.5 6 6.5"/></svg><span>Kinderles</span></a>
-          <a class="hero-tab" href="parent-punch.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="2.4"/><circle cx="17" cy="9" r="1.8"/><path d="M3 20c0-3.5 2.2-6 5-6s5 2.5 5 6M14 20c.3-2.6 1.6-4.4 3-4.4s3 1.8 3 4.4"/></svg><span>Parent &amp; Punch</span></a>
-        </div>
-
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#cta">Boek je gratis proefles</a>
-          <a class="btn btn-ghost" href="#lessen">Bekijk de lessen</a>
-        </div>
-      </div>
-      <div class="hero-media">
-        <div class="ph" style="min-height:460px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -276,25 +246,10 @@
 
 <!-- ============ TOOLBAR ============ -->
 <div class="wf-toolbar">
-  <strong>Wireframe #559 PTbyJay</strong>
-  <div class="wf-group">
-    Structuur:
-    <button data-set="structuur" data-val="A" class="active">A: dicht bij mylife.nl</button>
-    <button data-set="structuur" data-val="B">B: eigen vrijheid</button>
-  </div>
+  <strong>Wireframe #559 PTbyJay, Home</strong>
 </div>
 
 <script>
-// structuur- en kleurtoggle
-document.querySelectorAll('.wf-toolbar button[data-set]').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const set = btn.dataset.set, val = btn.dataset.val;
-    document.body.setAttribute('data-'+set, val);
-    document.querySelectorAll('.wf-toolbar button[data-set="'+set+'"]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-
 // mobiel menu
 document.getElementById('menuToggle').addEventListener('click', ()=>{
   document.getElementById('mainNav').classList.toggle('open');
