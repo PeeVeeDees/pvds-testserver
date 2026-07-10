@@ -106,6 +106,8 @@ section{ padding: clamp(3rem,6vw,5.5rem) 0; }
 .btn-ghost{ background:transparent; color:var(--dark); border-color:var(--dark); }
 .btn-ghost:hover{ background:var(--dark); color:#fff; }
 .btn-ghost-light{ background:transparent; color:#fff; border-color:rgba(255,255,255,.6); }
+.btn-dark{ background:#1A1A1A; color:#fff; }
+.btn-dark:hover{ background:#000; }
 .btn-sm{ padding:var(--knop-klein-padding); font-size:var(--knop-klein-tekst); }
 
 /* ============ TOGGLE-BALK (werkbalk voor wireframe, niet onderdeel van het ontwerp) ============ */
@@ -387,8 +389,8 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 @media (max-width:700px){ .testi-arrow{ display:none; } }
 
 /* ============ CTA-BAND ============ */
-.cta-band{ background:var(--dark); color:#fff; border-radius:var(--radius); }
-.cta-band .container{ padding: clamp(2.4rem,5vw,3.6rem) 2.2rem; }
+.cta-band{ background:var(--orange); color:#fff; }
+.cta-band .eyebrow{ color:#fff; }
 .cta-inner{
   display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.4rem;
   max-width:640px; margin-inline:auto;
