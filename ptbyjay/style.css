@@ -31,7 +31,7 @@
   --dark-soft: #116CBD;
   --bg: #FFFFFF;
   --bg-alt: #E3EEF6;
-  --text: #1A1A1A;
+  --text: #2A3439;
   --muted: #63676C;
   --line: #E1E3E6;
 
@@ -200,7 +200,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
   color:#fff;
 }
 .hero-a .hero-overlay-copy h1{ color:#fff; }
-.hero-a .hero-overlay-copy p{ color:#EFE9DD; max-width:34ch; }
+.hero-a .hero-overlay-copy p{ max-width:34ch; }
 
 /* ============ LESSEN ============ */
 .section-head{ max-width:640px; margin-bottom:2.2rem; }
@@ -279,7 +279,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .cta-band{ background:var(--dark); color:#fff; border-radius:var(--radius); }
 .cta-band .container{ padding: clamp(2.4rem,5vw,3.6rem) 2.2rem; }
 .cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
-.cta-inner p{ color:#E7E2D8; max-width:46ch; margin:0; }
+.cta-inner p{ max-width:46ch; margin:0; }
 
 /* ============ FOOTER (vast, geen A/B-verschil) ============ */
 footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem; }
