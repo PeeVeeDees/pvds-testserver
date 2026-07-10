@@ -242,6 +242,35 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
   .les-card .ph{ flex:none; width:100%; min-height:240px; }
 }
 
+/* ============ OVER MIJ — EVEN VOORSTELLEN ============ */
+.intro-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:2rem 2.5rem;
+  margin-bottom:2.4rem;
+}
+.intro-item p{ color:var(--muted); }
+@media (max-width:700px){ .intro-grid{ grid-template-columns:1fr; } }
+
+/* ============ OVER MIJ — CUSTOMER JOURNEY ============ */
+.journey-steps{ display:flex; flex-direction:column; }
+.journey-step{
+  display:flex; align-items:flex-start; gap: clamp(1.2rem, 3vw, 2.2rem);
+  padding: clamp(1.6rem, 3vw, 2.2rem) 0;
+  border-bottom:1px solid var(--line);
+}
+.journey-step:first-child{ padding-top:0; }
+.journey-step:last-child{ border-bottom:none; padding-bottom:0; }
+/* Volgnummer in var(--orange): de kleur is op deze pagina al het signaal voor
+   "hier moet je op letten" (eyebrow, CTA-knoppen, h3-underline bij les-card),
+   dus een oranje cijfer sluit aan bij dat ritme in plaats van er een nieuwe
+   kleurbetekenis (var(--dark)) naast te zetten. */
+.journey-step__nummer{
+  font-family:'Barlow Semi Condensed', sans-serif; font-weight:800;
+  font-size: clamp(2.4rem, 4.5vw, 3.2rem); line-height:1; color:var(--orange);
+  flex:0 0 auto; width:2.4ch;
+}
+.journey-step__copy h3{ margin-bottom:.5rem; }
+.journey-step__copy p{ color:var(--muted); max-width:60ch; margin:0; }
+
 /* ============ OVER MIJ — LOCATIES ============ */
 .locaties-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
 .loc-card{
