@@ -17,7 +17,10 @@
   <div class="header-inner">
     <a href="wireframes-v1.html" aria-label="Naar de homepage"><img src="logo-oranje.svg" alt="GYMbyJay" width="184" height="72"></a>
 
-    <button class="menu-toggle" id="menuToggle" aria-expanded="false">Menu</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="mainNav">
+      <svg class="icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </button>
 
     <nav class="main-nav" id="mainNav">
       <a href="wireframes-v1.html">Home</a>
@@ -33,6 +36,11 @@
       <a href="rooster.html">Rooster</a>
       <a href="massages.html">Massages</a>
       <a href="contact.html">Contact</a>
+
+      <div class="mobile-nav-actions">
+        <a class="btn btn-primary" href="#">Boek je gratis proefles</a>
+        <a class="btn btn-ghost" href="#">Word lid</a>
+      </div>
     </nav>
 
     <div class="header-actions">
@@ -124,12 +132,6 @@
 <div class="wf-toolbar">
   <strong>Wireframe #559 GYMbyJay, Massages</strong>
 </div>
-
-<script>
-document.getElementById('menuToggle').addEventListener('click', ()=>{
-  document.getElementById('mainNav').classList.toggle('open');
-});
-</script>
 
 <script src="lenis.min.js"></script>
 <script src="site.js"></script>

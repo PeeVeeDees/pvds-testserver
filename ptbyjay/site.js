@@ -1,4 +1,39 @@
 (function () {
+  // Mobiel menu: los van prefers-reduced-motion, dit is navigatie, geen animatie.
+  var menuToggle = document.getElementById('menuToggle');
+  var mainNav = document.getElementById('mainNav');
+
+  if (menuToggle && mainNav) {
+    var openMenu = function () {
+      mainNav.classList.add('open');
+      menuToggle.setAttribute('aria-expanded', 'true');
+    };
+    var closeMenu = function () {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    menuToggle.addEventListener('click', function () {
+      if (mainNav.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Sluit bij klik op een link in het paneel (ook de lessen-sublinks en de mobiele CTA's).
+    mainNav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMenu();
+    });
+
+    // Sluit bij klik buiten het paneel.
+    document.addEventListener('click', function (e) {
+      if (!mainNav.classList.contains('open')) return;
+      if (mainNav.contains(e.target) || menuToggle.contains(e.target)) return;
+      closeMenu();
+    });
+  }
+
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var revealTargets = document.querySelectorAll('section:not(.hero) > .container');
