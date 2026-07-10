@@ -41,6 +41,12 @@
   --tekst-klein: .95rem;
   --h3-standaard: 1.2rem;
   --h3-kaart: clamp(1.5rem, 2.6vw, 2rem);
+
+  /* knop-tokens, vastgesteld 10 juli 2026 (zie stijlgids-typografie.md) */
+  --knop-groot-padding: .85rem 1.6rem;
+  --knop-groot-tekst: .98rem;
+  --knop-klein-padding: .6rem 1.2rem;
+  --knop-klein-tekst: .88rem;
 }
 
 *{ box-sizing: border-box; }
@@ -86,18 +92,22 @@ section{ padding: clamp(3rem,6vw,5.5rem) 0; }
 .ph svg{ width:38px; height:38px; opacity:.7; }
 .ph-round{ border-radius:50%; }
 
-/* ---------- knoppen ---------- */
+/* Knoppen: twee groottes (--knop-groot / --knop-klein, hierboven), drie stijlvarianten.
+   .btn-primary: vol oranje, voor de hoofd-CTA.
+   .btn-ghost: omlijnd in var(--dark), voor gebruik op een lichte achtergrond.
+   .btn-ghost-light: omlijnd in wit, voor gebruik op een donkere achtergrond of foto.
+   Vorm (volle pil, border-radius 999px) ligt vast in de gedeelde .btn-regel, niet per variant. */
 .btn{
   display:inline-flex; align-items:center; gap:.5rem;
-  padding:.85rem 1.6rem; border-radius:999px; font-weight:600;
-  font-size:.98rem; border:2px solid transparent; white-space:nowrap;
+  padding:var(--knop-groot-padding); border-radius:999px; font-weight:600;
+  font-size:var(--knop-groot-tekst); border:2px solid transparent; white-space:nowrap;
 }
 .btn-primary{ background:var(--orange); color:#fff; }
 .btn-primary:hover{ background:var(--orange-hover); }
 .btn-ghost{ background:transparent; color:var(--dark); border-color:var(--dark); }
 .btn-ghost:hover{ background:var(--dark); color:#fff; }
 .btn-ghost-light{ background:transparent; color:#fff; border-color:rgba(255,255,255,.6); }
-.btn-sm{ padding:.6rem 1.2rem; font-size:.88rem; }
+.btn-sm{ padding:var(--knop-klein-padding); font-size:var(--knop-klein-tekst); }
 
 /* ============ TOGGLE-BALK (werkbalk voor wireframe, niet onderdeel van het ontwerp) ============ */
 .wf-toolbar{
@@ -280,6 +290,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .cta-band .container{ padding: clamp(2.4rem,5vw,3.6rem) 2.2rem; }
 .cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
 .cta-inner p{ max-width:46ch; margin:0; }
+.cta-band .btn-primary{ font-size:1.05rem; }
 
 /* ============ FOOTER (vast, geen A/B-verschil) ============ */
 footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem; }
