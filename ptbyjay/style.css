@@ -279,6 +279,20 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .journey-step__copy h3{ margin-bottom:.5rem; }
 .journey-step__copy p{ color:var(--muted); max-width:60ch; margin:0; }
 
+/* ============ OVER MIJ — SAMENWERKINGSPARTNERS ============
+   Rustig, statisch blok: geen slider. Met zeven logo's is doorlopende
+   beweging overbodig, een grid dat vanzelf naar een tweede rij doorloopt
+   is duidelijker en rustiger. */
+.partners-eyebrow{ display:block; text-align:center; margin:0 0 2rem; }
+.partners-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem; }
+.partner-logo{
+  min-height:96px; padding:.8rem 1rem; text-align:center;
+  box-shadow:0 1px 3px rgba(0,0,0,.07);
+}
+.partner-logo span{ color:var(--muted); font-size:.85rem; font-weight:600; line-height:1.3; }
+@media (max-width:900px){ .partners-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:560px){ .partners-grid{ grid-template-columns:repeat(2,1fr); } }
+
 /* ============ OVER MIJ — LOCATIES ============ */
 .locaties-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--gap); }
 .loc-card{
