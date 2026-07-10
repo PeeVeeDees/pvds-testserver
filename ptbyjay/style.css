@@ -509,3 +509,15 @@ footer.site-footer{ background:var(--dark); color:#FFFFFF; margin-top:2rem; }
   position:absolute; bottom:12px; left:12px; background:rgba(255,255,255,.94); border-radius:999px;
   padding:.32rem .75rem; font-size:.72rem; font-weight:600; color:var(--muted); letter-spacing:.02em;
 }
+
+/* ============ SCROLL-REVEAL (Lenis, site.js) ============
+   De hero blijft bewust buiten deze regel (section:not(.hero)): die moet
+   direct staan, niet faden. Rustig gehouden: alleen opacity + een korte
+   verticale verschuiving, geen schaal, blur of stagger. */
+section:not(.hero) > .container{
+  opacity:0; transform:translateY(14px);
+  transition: opacity .5s ease-out, transform .5s ease-out;
+}
+section:not(.hero) > .container.is-visible{
+  opacity:1; transform:translateY(0);
+}

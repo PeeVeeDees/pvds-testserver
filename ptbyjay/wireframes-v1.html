@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="lenis.css">
 </head>
 <body>
 
@@ -139,7 +140,7 @@
 
     <div class="testi-wrap">
       <button class="testi-arrow prev" id="testiPrev" aria-label="Vorige">‹</button>
-      <div class="testi-track" id="testiTrack">
+      <div class="testi-track" id="testiTrack" data-lenis-prevent>
         <div class="testi-slides" id="testiSlides">
           <div class="testi-card">
             <div class="ph ph-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
@@ -303,6 +304,9 @@ document.getElementById('menuToggle').addEventListener('click', ()=>{
 })();
 
 </script>
+
+<script src="lenis.min.js"></script>
+<script src="site.js"></script>
 
 </body>
 </html>
