@@ -14,7 +14,7 @@
   --container: 1180px;
   --gap: 1.5rem;
 
-  /* vast: conversiekleur, ongeacht kleurvoorstel */
+  /* vast: conversiekleur */
   --orange: #EB6708;
   --orange-hover: #B34F04;
   --orange-tint: #FDEDE0;
@@ -22,13 +22,11 @@
   /* placeholder-kleuren (grijs, per protocol) */
   --ph-bg: #E4E4E1;
   --ph-icon: #A9A9A4;
-}
 
-/* ---------- kleurvoorstel 1: wit & staalblauw (mono + oranje) ----------
-   Bewust geen crème/beige: zuiver wit als basis, staalblauw als
-   tegenkleur, oranje als enige kleuraccent. Sportief, grafisch, denk
-   Nike Training: geen kleur die "toevallig AI-gegenereerd" aanvoelt. */
-body[data-kleur="1"]{
+  /* kleur definitief staalblauw, vastgesteld 9 juli 2026 (zie daglog).
+     Bewust geen crème/beige: zuiver wit als basis, staalblauw als
+     tegenkleur, oranje als enige kleuraccent. Sportief, grafisch, denk
+     Nike Training: geen kleur die "toevallig AI-gegenereerd" aanvoelt. */
   --dark: #0F5FA6;
   --dark-soft: #116CBD;
   --bg: #FFFFFF;
@@ -36,20 +34,6 @@ body[data-kleur="1"]{
   --text: #1A1A1A;
   --muted: #63676C;
   --line: #E1E3E6;
-}
-/* ---------- kleurvoorstel 2: wit & petrolgroen (met mintgroen tint) ----------
-   Ook hier: wit als basis, geen beige. De afwisselsecties krijgen een
-   duidelijk groene tint (geen grijze of zandkleurige tussenweg), zodat
-   het wit echt gebroken wordt door een andere kleur, niet door een
-   andere schakering wit. */
-body[data-kleur="2"]{
-  --dark: #0F3D3A;
-  --dark-soft: #16524D;
-  --bg: #FFFFFF;
-  --bg-alt: #E3F0E7;
-  --text: #16221E;
-  --muted: #57655D;
-  --line: #D6EADC;
 }
 
 *{ box-sizing: border-box; }
@@ -351,6 +335,7 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
   display:grid; grid-template-columns:max-content max-content; column-gap:1.5rem; row-gap:.5rem;
 }
 .hours-row{ display:contents; }
+.adres-block{ display:flex; flex-direction:column; gap:.1rem; }
 
 /* ============ CONTACTPAGINA ============ */
 .page-kop{ padding-bottom:0; }
