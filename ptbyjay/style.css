@@ -400,6 +400,8 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 
 /* ============ FOOTER (vast, geen A/B-verschil) ============ */
 footer.site-footer{ background:var(--dark); color:#FFFFFF; margin-top:2rem; }
+/* CTA-band is de vaste afsluiting vóór de footer: geen wit gat ertussen, ze sluiten direct aan. */
+.cta-band + footer.site-footer{ margin-top:0; }
 .footer-grid{
   display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:2rem;
   padding: clamp(2.5rem,5vw,3.5rem) 0 2rem;
