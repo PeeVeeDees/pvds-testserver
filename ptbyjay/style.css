@@ -34,6 +34,13 @@
   --text: #1A1A1A;
   --muted: #63676C;
   --line: #E1E3E6;
+
+  /* typografie-tokens, vastgesteld 10 juli 2026 (zie stijlgids-typografie.md) */
+  --tekst-lead: 1.05rem;
+  --tekst-standaard: 1rem;
+  --tekst-klein: .95rem;
+  --h3-standaard: 1.2rem;
+  --h3-kaart: clamp(1.5rem, 2.6vw, 2rem);
 }
 
 *{ box-sizing: border-box; }
@@ -54,8 +61,8 @@ h1,h2,h3,.hdg{
 }
 h1{ font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight:800; }
 h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
-h3{ font-size: 1.2rem; font-weight:600; }
-p{ margin:0 0 1rem; }
+h3{ font-size: var(--h3-standaard); font-weight:600; }
+p{ margin:0 0 1rem; font-size:var(--tekst-standaard); }
 img{ max-width:100%; display:block; }
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; cursor:pointer; }
@@ -63,7 +70,7 @@ button{ font-family:inherit; cursor:pointer; }
 .eyebrow{
   display:inline-block; font-family:'Barlow Semi Condensed', sans-serif;
   font-weight:600; letter-spacing:.14em; text-transform:uppercase;
-  font-size:.78rem; color:var(--orange); margin-bottom:.6rem;
+  font-size:.78rem; color:var(--orange); margin:0 0 .6rem;
 }
 section{ padding: clamp(3rem,6vw,5.5rem) 0; }
 #content{ padding-top:0; }
@@ -192,14 +199,13 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
   position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; justify-content:center;
   color:#fff;
 }
-.hero-a .hero-overlay-copy .eyebrow{ color:#FFD9A8; }
 .hero-a .hero-overlay-copy h1{ color:#fff; }
 .hero-a .hero-overlay-copy p{ color:#EFE9DD; max-width:34ch; }
 
 /* ============ LESSEN ============ */
 .section-head{ max-width:640px; margin-bottom:2.2rem; }
 
-.les-card p{ color:var(--muted); font-size:.96rem; flex-grow:1; }
+.les-card p{ color:var(--muted); font-size:var(--tekst-klein); flex-grow:1; }
 .les-card .btn-row{ display:flex; gap:.6rem; flex-wrap:wrap; }
 
 /* ---------- groot en alternerend, geen grid van blokjes ---------- */
@@ -214,7 +220,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .les-card .ph{ flex:0 0 46%; min-height:360px; }
 .les-card .les-copy{ display:block; flex:1; }
 .les-card .les-copy h3{
-  font-size: clamp(1.5rem, 2.6vw, 2rem); position:relative; padding-bottom:1rem; margin-bottom:1rem;
+  font-size: var(--h3-kaart); position:relative; padding-bottom:1rem; margin-bottom:1rem;
 }
 .les-card .les-copy h3::after{
   content:""; position:absolute; left:0; bottom:0; width:56px; height:4px;
@@ -260,7 +266,7 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 .testi-card .ph{ width:56px; height:56px; min-height:0; flex:none; margin-bottom:1.1rem; }
 .testi-name{ font-weight:700; font-family:'Barlow Semi Condensed',sans-serif; }
 .testi-role{ font-size:.82rem; color:var(--orange); font-weight:600; margin-bottom:.9rem; }
-.testi-quote{ color:var(--muted); font-size:.95rem; margin:0; padding-top:.2rem; }
+.testi-quote{ color:var(--muted); font-size:var(--tekst-klein); margin:0; padding-top:.2rem; }
 .testi-arrow{
   position:absolute; top:50%; translate:0 -50%; background:#fff; border:1px solid var(--line);
   width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
@@ -272,7 +278,6 @@ nav.main-nav a{ font-weight:600; font-size:.96rem; }
 /* ============ CTA-BAND ============ */
 .cta-band{ background:var(--dark); color:#fff; border-radius:var(--radius); }
 .cta-band .container{ padding: clamp(2.4rem,5vw,3.6rem) 2.2rem; }
-.cta-band .eyebrow{ color:#FFD9A8; }
 .cta-inner{ display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
 .cta-inner p{ color:#E7E2D8; max-width:46ch; margin:0; }
 
@@ -305,7 +310,7 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
 /* ============ CONTACTPAGINA ============ */
 .page-kop{ padding-bottom:0; }
 .page-kop h1{ max-width:22ch; }
-.page-kop p{ color:var(--muted); max-width:56ch; font-size:1.05rem; }
+.page-kop p{ color:var(--muted); max-width:56ch; font-size:var(--tekst-lead); }
 
 .contact-grid{ display:grid; gap:2.5rem; grid-template-columns:1.5fr 1fr; align-items:start; }
 @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
@@ -351,7 +356,7 @@ footer.site-footer{ background:var(--dark-soft); color:#FFFFFF; margin-top:2rem;
   .locatie-card .kaart-ph{ flex:none; width:100%; min-height:220px; }
 }
 
-.locatie-copy h3{ position:relative; padding-bottom:.9rem; margin-bottom:.9rem; }
+.locatie-copy h3{ font-size:var(--h3-kaart); position:relative; padding-bottom:.9rem; margin-bottom:.9rem; }
 .locatie-copy h3::after{
   content:""; position:absolute; left:0; bottom:0; width:48px; height:4px;
   background:var(--orange); border-radius:2px;
