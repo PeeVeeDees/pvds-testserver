@@ -34,6 +34,21 @@
     });
   }
 
+  // Blogoverzicht: "Lees meer" toont telkens de eerstvolgende 6 verborgen kaarten.
+  var loadMoreBtn = document.getElementById('blogLoadMore');
+  if (loadMoreBtn) {
+    var BLOG_BATCH = 6;
+    loadMoreBtn.addEventListener('click', function () {
+      var hiddenCards = document.querySelectorAll('.blog-card.is-hidden');
+      for (var i = 0; i < Math.min(BLOG_BATCH, hiddenCards.length); i++) {
+        hiddenCards[i].classList.remove('is-hidden');
+      }
+      if (document.querySelectorAll('.blog-card.is-hidden').length === 0) {
+        loadMoreBtn.style.display = 'none';
+      }
+    });
+  }
+
   var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var revealTargets = document.querySelectorAll('section:not(.hero) > .container');
